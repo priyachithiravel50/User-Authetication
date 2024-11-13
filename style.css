@@ -1,21 +1,27 @@
- body{
+body{
     margin: 0;
     padding: 0;
 }
-#form{
-    width: 400px;
-  
-    margin: 15vh auto 0 auto;
-    border-radius: 10px;
-    padding: 50px;   
-     box-shadow: 5px 5px 5px 10px rgba(100, 99, 99, 0.1); 
-     background-color: #fff; 
- 
+.form-container{
+
+    max-width: 400px;
+    margin: auto;
+    margin-top: 12%;
+    padding: 20px;
+    background: white;
+    border-radius: 4px;
+    box-shadow: rgba(60, 66, 87, 0.12) 0px 0px 14px 0px, rgba(0, 0, 0, 0.12) 0px 3px 6px 0px;
 }
-.form-floating{
-    display: flex;
-    flex-direction: column;
-    margin-bottom: 10px;
+.form-container h2 {
+    display: block;
+    font-size: 25px;
+     color: #203864;
+    margin-bottom: 20px;
+    text-align: center;
+    margin-top: 20px; 
+}
+.form-floating label i {
+    margin-right: 8px;
 }
 .span{
     margin-top: 16px;
@@ -24,28 +30,16 @@
 .eye-icon {
     position: absolute;
     right: 10px;
-    top: 70%;
+    top: 58%;
     transform: translateY(-50%);
     cursor: pointer;
 }
-.img{
-    font-size: -10px;
+.form-check{
+    margin-top: 25px;
 }
 
-/* .form-group label{
-    font-weight: bold;
-    font-size: 20px;
-    color: white;
-} 
-.form-group input{
-    margin-top: 5px;
-    padding: 10px;
-    width: 100%;
-    border-radius: 5px;
-    border-color: #787575;
-} */
  .btn{
-    margin-left: 70px;
+    margin-left: 80px;
     width: 40%;
     margin-top:12%;
 }

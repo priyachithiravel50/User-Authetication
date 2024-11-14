@@ -1,6 +1,5 @@
 async function Click(event) {
-  event.preventDefault();  
-  // Clear previous error messages
+  event.preventDefault();
   const nameError = document.getElementById('nameError');
   const passwordError = document.getElementById('passwordError');
   nameError.textContent = '';
@@ -8,92 +7,142 @@ async function Click(event) {
 
   const username = document.getElementById('Username').value;
   const password = document.getElementById('pswd').value;
-  const rememberMe = document.getElementById('rememberMe').checked;
   let valid = true;
 
-  // Validate Username
   if (username.trim() === '') {
-    nameError.textContent = 'Username is required';
-    nameError.style.color = "red";
-    nameError.style.fontSize = "13px";
-    nameError.style.paddingLeft = "15px";
-    valid = false;
-  } else {
-    nameError.textContent = '';
+      nameError.textContent = 'Username is required';
+      nameError.style.color = "red";
+      valid = false;
   }
-
-  // Validate Password
   if (password.trim() === '') {
-    passwordError.textContent = 'Password is required';
-    passwordError.style.color = "red";
-    passwordError.style.fontSize = "13px";
-    passwordError.style.paddingLeft = "15px";
-    valid = false;
-  } else {
-    passwordError.textContent = '';
+      passwordError.textContent = 'Password is required';
+      passwordError.style.color = "red";
+      valid = false;
   }
 
-  // Validate Remember Me
-  if (!rememberMe) {
-    alert('You must select "Remember me" to submit the form.');
-    valid = false;
-  }
-
-  // If all validations pass, submit the form
   if (valid) {
-    const data = {
-      "userName": username,
-      "password": password,
-    };
+      const data = { "userName": username, "password": password };
 
-    try {
-      const response = await fetch('https://hastin-container.com/staging/app/auth/login', {
-        method: 'POST',
-        headers: {
-          'Content-Type': 'application/json'
-        },
-        body: JSON.stringify(data)
+      try {
+          const response = await fetch('https://hastin-container.com/staging/app/auth/login', {
+              method: 'POST',
+              headers: { 'Content-Type': 'application/json' },
+              body: JSON.stringify(data)
+          });
+
+          if (response.ok) {
+              const result = await response.json();
+              alert("User created successfully!");
+
+              // Store token and access code in localStorage
+              localStorage.setItem('opaque', result.data.opaque);
+              localStorage.setItem('accessCode', result.data.accessCode);
+              localStorage.setItem('jwtToken', result.data.jwt);
+
+              // Call openOtpModal to display the OTP modal
+              openOtpModal();
+          } else {
+              throw new Error("Login failed");
+          }
+      } catch (error) {
+          console.error("Error:", error);
+          alert("There was an error in the form.");
+      }
+  }
+}
+
+
+  // Toggle password visibility
+  function togglePassword() {
+    const passwordInput = document.getElementById('pswd');
+    const passwordIcon = document.getElementById('togglePassword');
+    
+    // Check current type and toggle it
+    if (passwordInput.type === 'password') {
+      passwordInput.type = 'text';
+      passwordIcon.classList.remove('fa-eye');
+      passwordIcon.classList.add('fa-eye-slash');
+    } else {
+      passwordInput.type = 'password';
+      passwordIcon.classList.remove('fa-eye-slash');
+      passwordIcon.classList.add('fa-eye');
+    }
+  
+  }
+
+// Open OTP Modal
+function openOtpModal() {
+  const opaque = localStorage.getItem('opaque');
+  const accessCode = localStorage.getItem('accessCode');
+
+  document.getElementById('otpPrefix').textContent = opaque;
+  document.getElementById('otpInput').value = accessCode;
+  document.getElementById('otpModal').style.display = 'block';
+
+  startTimer();
+  document.getElementById('resendOtp').onclick = function() {
+      const payload = { opaque, accessCode };
+      sendOtp(payload);
+      startTimer();
+  };
+}
+
+// Close OTP Modal
+function closeOtpModal() {
+  document.getElementById('otpModal').style.display = 'none';
+  clearInterval(timerInterval);
+}
+
+let timerInterval;
+function startTimer() {
+  let timeRemaining = 60;
+  document.getElementById('timer').textContent = "01:00";
+  clearInterval(timerInterval);
+
+  timerInterval = setInterval(() => {
+      timeRemaining--;
+      const minutes = Math.floor(timeRemaining / 60);
+      const seconds = timeRemaining % 60;
+
+      document.getElementById('timer').textContent = 
+          `${minutes.toString().padStart(2, '0')}:${seconds.toString().padStart(2, '0')}`;
+
+      if (timeRemaining <= 0) {
+          clearInterval(timerInterval);
+          alert("OTP expired. Please request a new OTP.");
+      }
+  }, 1000);
+}
+
+async function sendOtp(data) {
+  try {
+      const jwtToken = localStorage.getItem('jwtToken');
+      if (!jwtToken) {
+          alert("Authorization token is missing.");
+          return;
+      }
+
+      const response = await fetch('https://hastin-container.com/staging/app/auth/access-code/validate', {
+          method: 'POST',
+          headers: {
+              'Content-Type': 'application/json',
+              'Authorization': `Bslogikey ${jwtToken}`
+          },
+          body: JSON.stringify(data),
       });
 
       if (response.ok) {
-        const result = await response.json();
-        alert("User created successfully!");
-        document.getElementById('form').reset(); 
+          const result = await response.json();
+          console.log("Access code successfully verified:", result);
+          alert("Access code successfully verified!");
+          document.getElementById('form').reset();
+          closeOtpModal();
+          clearInterval(timerInterval);
       } else {
-        throw new Error("User failed");
+          alert("Invalid OTP. Please try again.");
       }
-    } catch (error) {
+  } catch (error) {
       console.error("Error:", error);
-      alert("There was an error in the form.");
-    }
+      alert("There was an error during OTP verification.");
   }
 }
-
-// Toggle password visibility
-function togglePassword() {
-  const passwordInput = document.getElementById('pswd');
-  const passwordIcon = document.getElementById('togglePassword');
-  
-  // Check current type and toggle it
-  if (passwordInput.type === 'password') {
-    passwordInput.type = 'text';
-    passwordIcon.classList.remove('fa-eye');
-    passwordIcon.classList.add('fa-eye-slash');
-  } else {
-    passwordInput.type = 'password';
-    passwordIcon.classList.remove('fa-eye-slash');
-    passwordIcon.classList.add('fa-eye');
-  }
-}
-  
-
-  //  if (valid) {
-  //     // Set values in local storage if "Remember Me" is checked
-  //     if (rememberMe) {
-  //         localStorage.setItem('username', username);
-  //         localStorage.setItem('password', password);
-  //         localStorage.setItem('rememberMe', rememberMe);
-  //     }
-
-
-   

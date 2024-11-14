@@ -30,32 +30,43 @@
                 <div id="passwordError" class="text-danger"></div>
             </div>
             
-            <div class="form-check">
+            <!-- <div class="form-check">
                 <input class="form-check-input" type="checkbox" id="rememberMe">
                  <label class="form-check-label" for="rememberMe">
                   Remember me
-                 </label>
+                 </label> -->
                 
             <span class="psw mt-5"> <a href="#" class="for">Forgot password?</a></span>   
              
             <button type="submit" onclick="Click(event)" class="btn btn-danger ">Login</button>
             
+            </div>
         </form>
-        </div> 
 
-       
 
-        <!-- OTP Form (Initially Hidden) -->
-    <div id="otpForm" class="forms" style="display: none;">
-        <h2>OTP Verification</h2>
-        <input type="text" id="userOTP" class="form-control mt-3" placeholder="Enter OTP">
-        <button onclick="verifyOTP()" class="btn btn-primary mt-3">Verify OTP</button>
-        <div id="timer" class="text-danger mt-2"></div>
-      </div>
-    </div>
+        <div id="otpModal" class="modal">
+            <div class="modal-content" style="width: 32%; margin-left: 34%; margin-top: 2%; height: 45%; background-color: blanchedalmond;">
+                <span class="close"onclick="closeOtpModal()">&times;</span>
+                <h2 class="otp">OTP Verification</h2>
+                <hr>
+                <p class="para">We've sent an OTP to your registered phone number. Please enter it below:</p>
+                <div>
+                    <span id="otpPrefix" class="prefix"> </span>
+                    <input type="text" id="otpInput" maxlength="5" required>
+                </div>
+                <div class="timer d-flex">
+                <p id="timer">01:00</p>
+                <span class="pswdd mt-5"> <a href="#" class="for1">Resend OTP</a></span>   
+            </div>
+                <button   id="resendOtp" onclick="resendOtp()"  >Send OTP</button>
+              
+            </div>
+        </div>
+
+            </div>
+            
+               
+    
+
 </body>
 </html> 
-
-
-
-

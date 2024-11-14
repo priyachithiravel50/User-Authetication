@@ -1,50 +1,91 @@
 body{
-    margin: 0;
-    padding: 0;
+  margin: 0;
+  padding: 0;
 }
 .form-container{
 
-    max-width: 400px;
-    margin: auto;
-    margin-top: 12%;
-    padding: 20px;
-    background: white;
-    border-radius: 4px;
-    box-shadow: rgba(60, 66, 87, 0.12) 0px 0px 14px 0px, rgba(0, 0, 0, 0.12) 0px 3px 6px 0px;
+  max-width: 400px;
+  margin: auto;
+  margin-top: 12%;
+  padding: 20px;
+  background: white;
+  border-radius: 4px;
+  box-shadow: rgba(60, 66, 87, 0.12) 0px 0px 14px 0px, rgba(0, 0, 0, 0.12) 0px 3px 6px 0px;
 }
 .form-container h2 {
-    display: block;
-    font-size: 25px;
-     color: #203864;
-    margin-bottom: 20px;
-    text-align: center;
-    margin-top: 20px; 
+  display: block;
+  font-size: 25px;
+   color: #203864;
+  margin-bottom: 20px;
+  text-align: center;
+  margin-top: 20px; 
 }
 .form-floating label i {
-    margin-right: 8px;
+  margin-right: 8px;
 }
 .span{
-    margin-top: 16px;
+  margin-top: 16px;
 }
 
 .eye-icon {
-    position: absolute;
-    right: 10px;
-    top: 58%;
-    transform: translateY(-50%);
-    cursor: pointer;
+  position: absolute;
+  right: 10px;
+  top: 58%;
+  transform: translateY(-50%);
+  cursor: pointer;
 }
 .form-check{
-    margin-top: 25px;
+  margin-top: 25px;
 }
 
- .btn{
-    margin-left: 80px;
-    width: 40%;
-    margin-top:12%;
+.btn{
+  margin-left: 100px;
+  width: 40%;
+  margin-top:12%;
 }
-  .for{
-    float: right;
-  }
+.for{
+  float: right;
+}
+.close{
+  margin-left: 95%;
+  top: 60%;
+  display: inline-flex;
+height: 15px;
+  padding: 2px;
+  float: right;
+}
 
- 
+.otp{
+  margin-left: 30px;
+  display: block;
+  color: #203864;
+    margin-bottom: 0;
+    line-height: 1.2;
+    text-transform: uppercase !important;
+    font-size: 20px !important;
+}
+.para{
+  text-align: center;
+  margin-left: 10px;
+}
+.prefix{
+  margin-left: 120px;
+}
+.timer{
+  margin-left: 120px;
+}
+
+.pswdd{
+  margin-left: 230px;
+  margin-bottom: 20px;
+  
+}
+
+#resendOtp{
+  width: 180px;
+  margin-left: 180px;
+  margin-bottom: 20px;
+  border-radius: 7px;
+  padding: 6px;
+}
+

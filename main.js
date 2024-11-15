@@ -26,18 +26,25 @@ async function Click(event) {
       try {
           const response = await fetch('https://hastin-container.com/staging/app/auth/login', {
               method: 'POST',
-              headers: { 'Content-Type': 'application/json' },
+              headers: {
+                 'Content-Type': 'application/json'
+                 },
               body: JSON.stringify(data)
           });
 
           if (response.ok) {
               const result = await response.json();
-              alert("User created successfully!");
+              // alert("User created successfully!");
 
               // Store token and access code in localStorage
               localStorage.setItem('opaque', result.data.opaque);
               localStorage.setItem('accessCode', result.data.accessCode);
               localStorage.setItem('jwtToken', result.data.jwt);
+
+                //  // Display OTP success message
+                //  alert("OTP verified successfully!" );
+
+              
 
               // Call openOtpModal to display the OTP modal
               openOtpModal();
@@ -87,11 +94,7 @@ function openOtpModal() {
   };
 }
 
-// Close OTP Modal
-function closeOtpModal() {
-  document.getElementById('otpModal').style.display = 'none';
-  clearInterval(timerInterval);
-}
+
 
 let timerInterval;
 function startTimer() {
@@ -109,9 +112,15 @@ function startTimer() {
 
       if (timeRemaining <= 0) {
           clearInterval(timerInterval);
-          alert("OTP expired. Please request a new OTP.");
+          alert("OTP has expired.Resend OTP");
       }
   }, 1000);
+}
+
+// Close OTP Modal
+function closeOtpModal() {
+  document.getElementById('otpModal').style.display = 'none';
+  clearInterval(timerInterval);
 }
 
 async function sendOtp(data) {
@@ -126,23 +135,28 @@ async function sendOtp(data) {
           method: 'POST',
           headers: {
               'Content-Type': 'application/json',
-              'Authorization': `Bslogikey ${jwtToken}`
+              'Authorization': `BslogiKey ${jwtToken}`
           },
           body: JSON.stringify(data),
       });
 
       if (response.ok) {
           const result = await response.json();
-          console.log("Access code successfully verified:", result);
-          alert("Access code successfully verified!");
+          console.log("OTP verified:", result);
+          alert("OTP verified!");
+          window.location = "Vendor.html"
           document.getElementById('form').reset();
-          closeOtpModal();
+        //   closeOtpModal();
+         // Display the success message
+        
           clearInterval(timerInterval);
       } else {
-          alert("Invalid OTP. Please try again.");
+        //   alert("Invalid OTP. Please try again.");
+           throw new Error("Login failed");
       }
   } catch (error) {
       console.error("Error:", error);
-      alert("There was an error during OTP verification.");
+      alert("There was an error in OTP verification.");
   }
 }
+

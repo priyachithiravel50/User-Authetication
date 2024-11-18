@@ -11,15 +11,25 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.6.0/css/all.min.css" integrity="sha512-Kc323vGBEqzTmouAECnVceyQqyqdsSiqLQISBL29aUW4U/M7pSPA/gEUZQqv1cwx4OnYxTxve5UMg5GT6L4JJg==" crossorigin="anonymous" referrerpolicy="no-referrer" />
     <title>User Authetication</title>
     <script src="vendor.js"></script> 
+    <script src="table.js"></script>
 </head>
 <body>
 
-    <h1 class="table-title fs-3 mt-4 ">Login Page</h1>
+    <h1 class="table-title fs-3 mt-4 "></h1>
     <div  id="top-table" >
-        <table class="table table-bordered " style="text-align: center; background-color: antiquewhite;">
-            <label for="Username"><i class="fas fa-user"></i> </label>
-            <thead >
-                <tr style="font-size: 14px;">
+        <table class="table table-bordered " style="text-align: center;">
+
+            <div class="name">
+                <h3 class="ms-3 mt-1 fs-3">User Details</h3>
+            <div class="values mt-1 me-3">
+                <i class="fas fa-user  me-2"></i>
+                <h3 id="userName"></h3>
+                
+            <button type="submit" onclick="addData()" class="btn btn-success ">Add Data</button>
+            </div>
+            </div>
+            <thead>
+                <tr style="font-size: 13.8px;">
                     <th>S/No</th>
                     <th>NAME</th>
                     <th>VENDOR CODE</th>
@@ -40,3 +50,6 @@
 
 </body>
 </html>
+
+
+

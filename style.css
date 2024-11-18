@@ -176,3 +176,33 @@ height: 15px;
   margin-top: 10px;
 }
 
+
+.name{
+  display: flex;
+  color: #203864;
+  justify-content: space-between;
+  text-transform: capitalize;
+}
+
+.values{
+  display: flex;
+  color: #203864;
+}
+.fa-user{
+  margin-top: 8px;
+  font-size: 20px;
+}
+
+.btn-success{
+  width: 100px;
+
+}
+
+#vendor{
+  width: 400px;
+  margin: 10vh auto;
+}
+
+.box1{
+  padding: 20px;
+}

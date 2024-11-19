@@ -1,3 +1,6 @@
+function addData(){
+    window.location = "table.html";
+}
 async function fetchUser() {
    
     try {
@@ -78,6 +81,7 @@ function displayTable(users) {
             <td>${user.address}</td>
             <td>${user.country}</td>
             <td>${user.status}</td>
+
         </tr>`;
         tableBody.innerHTML += row;
     });

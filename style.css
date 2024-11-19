@@ -191,6 +191,7 @@ height: 15px;
 .fa-user{
   margin-top: 8px;
   font-size: 20px;
+
 }
 
 .btn-success{
@@ -198,10 +199,34 @@ height: 15px;
 
 }
 
+
+
+.save{
+  border: none;
+  margin-left: 90%;
+  padding: 5px 10px;
+  color: white;
+  border-radius: 5px;
+  background-color: red;
+  margin-bottom: 40px;
+
+}
+
 #vendor{
   width: 400px;
   margin: 10vh auto;
 }
+
+#vendor1{
+  width: 400px;
+  margin: 10vh auto;
+}
+
+#vendor2{
+  width: 400px;
+  margin: 10vh auto;
+}
+
 
 .box1{
   padding: 20px;

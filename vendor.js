@@ -81,7 +81,9 @@ function displayTable(users) {
             <td>${user.address}</td>
             <td>${user.country}</td>
             <td>${user.status}</td>
-
+              <td>
+        <i class="fas fa-pen text-danger"></i>
+    </td>
         </tr>`;
         tableBody.innerHTML += row;
     });

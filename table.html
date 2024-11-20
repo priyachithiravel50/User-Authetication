@@ -13,55 +13,49 @@
     <script src="table.js"></script> 
 </head>
 <body>
-
+  
     <div class="container-fluid d-flex" >
         <form id="vendor" class="form-container1 shadow">
             <div class="forms">
             <h4 style="margin-left: 2%;">Basic details</h4>
         <div class="box1">
-      <div class="form-floating mb-3">
-        <input type="text" class="form-control border-2 rounded-0 border-start-0 border-end-0 border-top-0" style="box-shadow: none;" id="vendorName" placeholder="vendorName" name="vendorName">
+      <div class="form-floating mb-3" aria-autocomplete="off">
+        <input type="text" class="form-control border-2 rounded-0 border-start-0 border-end-0 border-top-0" style="box-shadow: none;" id="vendorName" placeholder="vendorName" name="vendorName" autocomplete="off">
         <label for="vendorName"> Vendor Name</label>
         <div id="vendorError" class="text-danger"></div>
     </div>
        
     <div class="form-floating mb-3">
-        <input type="text" class="form-control border-2 rounded-0 border-start-0 border-end-0 border-top-0" style="box-shadow: none;" id="vendorCode" placeholder="vendorCode" name="vendorCode">
+        <input type="text" class="form-control border-2 rounded-0 border-start-0 border-end-0 border-top-0" style="box-shadow: none;" id="vendorCode" placeholder="vendorCode" name="vendorCode" autocomplete="off">
         <label for="vendorCode"> Vendor code</label>
         <div id="codeError" class="text-danger"></div>
       
     </div>
     <div class="form-floating mb-3">
-        <input type="text" class="form-control border-2 rounded-0 border-start-0 border-end-0 border-top-0" style="box-shadow: none;" id="vendorType" placeholder="chooseVendortype" name="chooseVendorType">
-        <label for="chooseVendorType"> Choose vendor type</label>
+        <select class="form-control border-2 rounded-0 border-start-0 border-end-0 border-top-0" style="box-shadow: none;" id="vendorType" placeholder="chooseVendortype" name="chooseVendorType" autocomplete="off">
+            <option value="" disabled selected>Choose Vendor Type</option>
+            <option value="Company">Company</option>
+            <option value="Individual">Individual</option>
+        </select>
+        <!-- <label for="chooseVendorType"> Choose vendor type</label> -->
         <div id="typeError" class="text-danger"></div>
-
-        <!-- Dropdown options -->
-    <!-- <ul id="vendorTypeDropdown" 
-    class="dropdown-menu" 
-    style="display: none; position: absolute; z-index: 1000;">
-    <li><a class="dropdown-item" href="#" data-value="Individual">Individual</a></li>
-    <li><a class="dropdown-item" href="#" data-value="Company">Company</a></li>
-</ul> -->
-
-
     </div>
 
     <div class="form-floating mb-3">
-        <input type="text" class="form-control border-2 rounded-0 border-start-0 border-end-0 border-top-0" style="box-shadow: none;" id="registrationNo" placeholder="Tag Registration No" name="Username">
+        <input type="text" class="form-control border-2 rounded-0 border-start-0 border-end-0 border-top-0" style="box-shadow: none;" id="registrationNo" placeholder="Tag Registration No" name="Username" autocomplete="off">
         <label for="Username"> Tag Registration no</label>
         <div id="tagError" class="text-danger"></div>
     </div>
 
     <div class="form-floating mb-3">
-        <input type="text" class="form-control border-2 rounded-0 border-start-0 border-end-0 border-top-0" style="box-shadow: none;" id="comRegistrationNo" placeholder="Company Registration No" name="Username">
+        <input type="text" class="form-control border-2 rounded-0 border-start-0 border-end-0 border-top-0" style="box-shadow: none;" id="comRegistrationNo" placeholder="Company Registration No" name="Username" autocomplete="off">
         <label for="Username"> Company Registration no</label>
         <div id="companyError" class="text-danger"></div>
       
     </div>
 
     <div class="form-floating mb-3">
-        <select class="form-control border-2 rounded-0 border-start-0 border-end-0 border-top-0" style="box-shadow: none;" id="Currency" placeholder="Choose Currency" name="Username">
+        <select class="form-control border-2 rounded-0 border-start-0 border-end-0 border-top-0" style="box-shadow: none;" id="Currency" placeholder="Choose Currency" name="Username" autocomplete="off">
         <option value=""disabled selected>Select a Currency</option>
     </select>
         <!-- <label for="Username"> Choose Currency</label> -->
@@ -81,43 +75,43 @@
     <h4 style="margin-left: 2%;">Address details</h4>
     <div class="box1">
 
-<div class="form-floating mb-3">
-<input type="text" class="form-control border-2 rounded-0 border-start-0 border-end-0 border-top-0" style="box-shadow: none;" id="address1" placeholder="Address1" name="Username">
-<label for="Address1"> Address1</label>
-<div id="address1Error" class="text-danger"></div>
+        <div class="form-floating mb-3" >
+        <input type="text" class="form-control border-2 rounded-0 border-start-0 border-end-0 border-top-0" style="box-shadow: none;" id="address1" placeholder="Address1" name="Username" autocomplete="off">
+        <label for="Address1"> Address1</label>
+        <div id="address1Error" class="text-danger"></div>
 
-</div>
-<div class="form-floating mb-3">
-<input type="text" class="form-control border-2 rounded-0 border-start-0 border-end-0 border-top-0" style="box-shadow: none;" id="address2" placeholder="Address2" name="Username">
-<label for="Address2"> Address2</label>
-<div id="address2Error" class="text-danger"></div>
+        </div>
+        <div class="form-floating mb-3">
+        <input type="text" class="form-control border-2 rounded-0 border-start-0 border-end-0 border-top-0" style="box-shadow: none;" id="address2" placeholder="Address2" name="Username" autocomplete="off">
+        <label for="Address2"> Address2</label>
+        <div id="address2Error" class="text-danger"></div>
 
-</div>
-<div class="form-floating mb-3">
-<select class="form-control border-2 rounded-0 border-start-0 border-end-0 border-top-0" style="box-shadow: none;" id="choose" placeholder="Choose Country" name="Username">
-    <option value=""disabled selected>Select a Currency</option>
-</select>
-<!-- <label for="Choose Country"> Choose Country</label> -->
+        </div>
+        <div class="form-floating mb-3">
+        <select class="form-control border-2 rounded-0 border-start-0 border-end-0 border-top-0" style="box-shadow: none;" id="choose" placeholder="Choose Country" name="Username" autocomplete="off">
+            <option value=""disabled selected>Select a Currency</option>
+        </select>
+        <!-- <label for="Choose Country"> Choose Country</label> -->
 
-<div id="chooseError" class="text-danger"></div>
-</div>
+        <div id="chooseError" class="text-danger"></div>
+        </div>
 
-<div class="form-floating mb-3">
-<select class="form-control border-2 rounded-0 border-start-0 border-end-0 border-top-0" style="box-shadow: none;" id="city" placeholder="Choose City" name="Username">
-    <option value=""disabled selected>Select a city</option>
-</select>
+        <div class="form-floating mb-3">
+        <select class="form-control border-2 rounded-0 border-start-0 border-end-0 border-top-0" style="box-shadow: none;" id="city" placeholder="Choose City" name="Username" autocomplete="off">
+            <option value=""disabled selected>Select a city</option>
+        </select>
 
 
-<!-- <label for="Choose City"> Choose City</label> -->
-<div id="cityError" class="text-danger"></div>
-</div>
+        <!-- <label for="Choose City"> Choose City</label> -->
+        <div id="cityError" class="text-danger"></div>
+        </div>
 
-<div class="form-floating mb-3">
-<input type="text" class="form-control border-2 rounded-0 border-start-0 border-end-0 border-top-0" style="box-shadow: none;" id="zip" placeholder="Zip Code" name="Username">
-<label for="Zip Code">Zip code</label>
-<div id="zipError" class="text-danger"></div>
+        <div class="form-floating mb-3">
+        <input type="text" class="form-control border-2 rounded-0 border-start-0 border-end-0 border-top-0" style="box-shadow: none;" id="zip" placeholder="Zip Code" name="Username" autocomplete="off">
+        <label for="Zip Code">Zip code</label>
+        <div id="zipError" class="text-danger"></div>
 
-</div>
+        </div>
 
     </div>
   
@@ -128,53 +122,88 @@
 <form id="vendor2" class="form-container1 shadow">
     <div class="forms">
      
-    <h4 style="margin-left: 2%;">Bank details</h4>
-<div class="box1">
-<div class="form-floating mb-3">
-<input type="text" class="form-control border-2 rounded-0 border-start-0 border-end-0 border-top-0" style="box-shadow: none;" id="bankaccount" placeholder="Bank Account Name" name="Bank Account Name">
-<label for="Bank Account Name"> Bank Account Name</label>
-<div id="accountError" class="text-danger"></div>
+            <h4 style="margin-left: 2%;">Bank details</h4>
+        <div class="box1">
+        <div class="form-floating mb-3">
+        <input type="text" class="form-control border-2 rounded-0 border-start-0 border-end-0 border-top-0" style="box-shadow: none;" id="bankaccount" placeholder="Bank Account Name" name="Bank Account Name" autocomplete="off">
+        <label for="Bank Account Name"> Bank Account Name</label>
+        <div id="accountError" class="text-danger"></div>
 
-</div>
-<div class="form-floating mb-3">
-<input type="text" class="form-control border-2 rounded-0 border-start-0 border-end-0 border-top-0" style="box-shadow: none;" id="bankaccountno" placeholder="Bank Account no" name="Username">
-<label for="Bank Account no">Bank Account no</label>
-<div id="accountnoError" class="text-danger"></div>
+        </div>
+        <div class="form-floating mb-3">
+        <input type="text" class="form-control border-2 rounded-0 border-start-0 border-end-0 border-top-0" style="box-shadow: none;" id="bankaccountno" placeholder="Bank Account no" name="Username" autocomplete="off">
+        <label for="Bank Account no">Bank Account no</label>
+        <div id="accountnoError" class="text-danger"></div>
 
-</div>
-<div class="form-floating mb-3">
-<input type="text" class="form-control border-2 rounded-0 border-start-0 border-end-0 border-top-0" style="box-shadow: none;" id="bankname" placeholder="Bank Name" name="Username">
-<label for="Bank Name">Bank Name</label>
-<div id="bankError" class="text-danger"></div>
-</div>
+        </div>
+        <div class="form-floating mb-3">
+        <input type="text" class="form-control border-2 rounded-0 border-start-0 border-end-0 border-top-0" style="box-shadow: none;" id="bankname" placeholder="Bank Name" name="Username" autocomplete="off">
+        <label for="Bank Name">Bank Name</label>
+        <div id="bankError" class="text-danger"></div>
+        </div>
 
-<div class="form-floating mb-3">
-<input type="text" class="form-control border-2 rounded-0 border-start-0 border-end-0 border-top-0" style="box-shadow: none;" id="branchname" placeholder="Enter Username" name="Username">
-<label for="Branch Name">Branch Name</label>
-<div id="branchError" class="text-danger"></div>
-</div>
+        <div class="form-floating mb-3">
+        <input type="text" class="form-control border-2 rounded-0 border-start-0 border-end-0 border-top-0" style="box-shadow: none;" id="branchname" placeholder="Enter Username" name="Username" autocomplete="off">
+        <label for="Branch Name">Branch Name</label>
+        <div id="branchError" class="text-danger"></div>
+        </div>
 
-<div class="form-floating mb-3">
-<input type="text" class="form-control border-2 rounded-0 border-start-0 border-end-0 border-top-0" style="box-shadow: none;" id="swiftcode" placeholder="Swift Code" name="Username">
-<label for="Swift Code">Swift code</label>
-<div id="swiftError" class="text-danger"></div>
+        <div class="form-floating mb-3">
+        <input type="text" class="form-control border-2 rounded-0 border-start-0 border-end-0 border-top-0" style="box-shadow: none;" id="swiftcode" placeholder="Swift Code" name="Username" autocomplete="off">
+        <label for="Swift Code">Swift code</label>
+        <div id="swiftError" class="text-danger"></div>
 
-</div>
+        </div>
 
 </div>
 </div>
 
   
 </form>
-       
-     
-
-   
-
     </div>
+
+    
+    <div class="container mt-4">
+        <h4>Contact Details</h4>
+        <table class="table table-bordered" id="contactTable">
+            <thead class="table-light">
+                <tr>
+                    <th>S.No</th>
+                    <th>Name</th>
+                    <th>Email</th>
+                    <th>Phone No</th>
+                    <th>Default</th>
+                    <th>Action</th>
+                </tr>
+            </thead>
+            <tbody>
+                <!-- First Row (Cannot be Deleted) -->
+                <tr>
+                    <td>1</td>
+                    <div class="form-floating">
+                    <td><input type="text" class="form-control border-2 rounded-0 border-start-0 border-end-0 border-top-0" style="box-shadow: none;" placeholder="Name"></td>
+                    <td><input type="email" class="form-control border-2 rounded-0 border-start-0 border-end-0 border-top-0" style="box-shadow: none;" placeholder="Email"></td>
+                    <td><input type="text" class="form-control border-2 rounded-0 border-start-0 border-end-0 border-top-0" style="box-shadow: none;" placeholder="Phone No"></td>
+                    </div>
+                    <td>
+
+                            <select class="form-control border-2 rounded-0 border-start-0 border-end-0 border-top-0" style="box-shadow: none;"  placeholder="Default" autocomplete="off">
+                                <option value="is default" disabled selected>is default</option>
+                                <option value="Yes">Yes</option>
+                                <option value="No">No</option>
+                            </select> 
+                    </td>
+                    <td><button class="btn btn-secondary btn-sm mt-2 ms-4" style="width: 60%;">Remove</button></td>
+                </tr>
+            </tbody>
+        </table>
+        <button class="btn btn-primary mt-1 ms-1" style="width: 10%;" id="addRowBtn">Add Row</button>
+    </div>
+
+
     <button type="submit" class="save" onclick="saveButton(event)">SAVE</button>
 
-
+   
    
 
 

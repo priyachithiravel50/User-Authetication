@@ -196,9 +196,11 @@ height: 15px;
 
 .btn-success{
   width: 100px;
+  margin-top: 5px;
+  margin-bottom: 5px;
+  margin-left: 93%;
 
 }
-
 
 
 .save{
@@ -230,4 +232,13 @@ height: 15px;
 
 .box1{
   padding: 20px;
+}
+
+
+
+.form-container5 {
+  margin: 15px;
+  padding: 20px;
+  border-radius: 10px;
+  background-color: #f9f9f9;
 }

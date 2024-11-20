@@ -12,15 +12,9 @@ function saveButton(event) {
     let comRegistrationNo = document.getElementById('comRegistrationNo').value;
     let Currency = document.getElementById('Currency').value;
     let address1 = document.getElementById('address1').value;
-    let address2 = document.getElementById('address2').value;
     let city = document.getElementById('city').value;
     let choose = document.getElementById('choose').value;
     let zip = document.getElementById('zip').value;
-    let bankaccount = document.getElementById('bankaccount').value;
-    let bankaccountno = document.getElementById('bankaccountno').value;
-    let bankname = document.getElementById('bankname').value;
-    let branchname = document.getElementById('branchname').value;
-    let swiftcode = document.getElementById('swiftcode').value;
    
 
     let vendorError = document.getElementById('vendorError');
@@ -30,15 +24,10 @@ function saveButton(event) {
     let companyError = document.getElementById('companyError');
     let currencyError = document.getElementById('currencyError');
     let address1Error = document.getElementById('address1Error');
-    let address2Error = document.getElementById('address2Error');
     let chooseError = document.getElementById('chooseError');
     let cityError = document.getElementById('cityError');
     let zipError = document.getElementById('zipError');
-    let accountError = document.getElementById('accountError');
-    let accountnoError = document.getElementById('accountnoError');
-    let bankError = document.getElementById('bankError');
-    let branchError = document.getElementById('branchError');
-    let swiftError = document.getElementById('swiftError');
+   
   
 
     let valid = true;
@@ -118,16 +107,7 @@ function saveButton(event) {
    else {
     address1Error.textContent = '';
    }
-      if (address2.trim() === "") {
-        address2Error.textContent = " Required*";
-        address2Error.style.color = "red";
-        address2Error.style.fontSize = "13px";
-        address2Error.style.paddingLeft = "15px";
-        valid = false;
-    }
-    else {
-      address2Error.textContent = '';
-    }
+     
         
     if (choose.trim() === "") {
     chooseError.textContent = " Required*";
@@ -161,59 +141,7 @@ function saveButton(event) {
       else {
         zipError.textContent = '';
       }
-    if (bankaccount.trim() === "") {
-      accountError.textContent = " Required*";
-      accountError.style.color = "red";
-      accountError.style.fontSize = "13px";
-      accountError.style.paddingLeft = "15px";
-      valid = false;
-      }
-      else {
-        accountError.textContent = '';
-      }
-
-    if (bankaccountno.trim() === "") {
-      accountnoError.textContent = " Required*";
-      accountnoError.style.color = "red";
-      accountnoError.style.fontSize = "13px";
-      accountnoError.style.paddingLeft = "15px";
-      valid = false;
-      }
-      else {
-        accountnoError.textContent = '';
-      }
-
-    if (bankname.trim() === "") {
-      bankError.textContent = " Required*";
-      bankError.style.color = "red";
-      bankError.style.fontSize = "13px";
-      bankError.style.paddingLeft = "15px";
-      valid = false;
-      }
-      else {
-        bankError.textContent = '';
-      }
-    if (branchname.trim() === "") {
-      branchError.textContent = " Required*";
-      branchError.style.color = "red";
-      branchError.style.fontSize = "13px";
-      branchError.style.paddingLeft = "15px";
-      valid = false;
-      }
-      else {
-        branchError.textContent = '';
-      }
-    
-    if (swiftcode.trim() === "") {
-      swiftError.textContent = " Required*";
-      swiftError.style.color = "red";
-      swiftError.style.fontSize = "13px";
-      swiftError.style.paddingLeft = "15px";
-      valid = false;
-      }
-      else {
-        swiftError.textContent = '';
-      }
+ 
 
     
  }
@@ -359,3 +287,121 @@ countrycity();
 
 populateCurrencies();
   
+
+
+
+// contact Page
+
+
+document.addEventListener("DOMContentLoaded", () => {
+    const addRowBtn = document.getElementById("addRowBtn");
+    const contactTable = document.getElementById("contactTable").querySelector("tbody");
+
+    addRowBtn.addEventListener("click", (e) => {
+        e.preventDefault(); 
+        const newRow = document.createElement("tr");
+        const rowCount = contactTable.rows.length + 1;
+        
+        newRow.innerHTML = `
+            <td>${rowCount}</td>
+            <td><input type="text" class="form-control border-2 rounded-0 border-start-0 border-end-0 border-top-0" style="box-shadow: none;" placeholder="Name"></td>
+            <td><input type="email" class="form-control border-2 rounded-0 border-start-0 border-end-0 border-top-0" style="box-shadow: none;" placeholder="Email"></td>
+            <td><input type="text" class="form-control border-2 rounded-0 border-start-0 border-end-0 border-top-0" style="box-shadow: none;" placeholder="Phone No"></td>
+            <td>
+                <select class="form-control border-2 rounded-0 border-start-0 border-end-0 border-top-0" style="box-shadow: none;" placeholder="Default">
+                    <option value="Yes">Yes</option>
+                    <option value="No">No</option>
+                </select>
+            </td>
+            <td><button class="btn btn-secondary btn-sm mt-2 ms-4 removeRowBtn" style = "width:60%;">Remove</button>
+            </td>
+        `;
+
+        contactTable.appendChild(newRow);
+
+        const removeBtn = newRow.querySelector(".removeRowBtn");
+        removeBtn.addEventListener("click", () => {
+            newRow.remove();
+        });
+    });
+
+    contactTable.addEventListener("click", (e) => {
+        if (e.target.classList.contains("removeRowBtn")) {
+            e.target.closest("tr").remove();
+        }
+    });
+});
+
+
+
+async function saveButton(event) { 
+    event.preventDefault(); 
+    
+    let vendorName = document.getElementById('vendorName').value;
+    let vendorCode = document.getElementById('vendorCode').value;
+    let vendorType = document.getElementById('vendorType').value;
+    let registrationNo = document.getElementById('registrationNo').value;
+    let comRegistrationNo = document.getElementById('comRegistrationNo').value;
+    let Currency = document.getElementById('Currency').value;
+    let address1 = document.getElementById('address1').value;
+    let city = document.getElementById('city').value;
+    let choose = document.getElementById('choose').value;
+    let zip = document.getElementById('zip').value;
+
+   
+    let valid = true;
+
+    if (valid) {
+        const payload = {
+            contactList: [
+                {
+                    name: "Abishek A",  
+                    email: "mailto:abishek582000@gmail.com",
+                    mobileNo: 8667254207,
+                    isDefault: true,
+                    id: null
+                }
+            ],
+            "vendorName": "Abishek",
+            "vendorCode": "ABI005",
+            "vendorType": "Individual",
+            "taxRegNo": "TIN223",
+            "companyRegNo": "f0751c9a-199a-49f0-b085-eaa049dd9410",
+            "address1": "462,South street, Pudur(PO), Orathanadu(TK)",
+            "address2": "462",
+            "country": "1692b3ec-4d4b-482e-9ece-963b7f55c6e7",
+            "postalCode": "614625",
+            "cityId": "1d7a3d67-1598-41aa-9a2c-2a18b738a1ce",
+            "createdBy": "adf8906a-cf9a-490f-a233-4df16fc86c58",
+            "documentList": []
+        };
+
+        try {
+            const jwtToken = localStorage.getItem('jwtToken');  
+            if (!jwtToken) {
+                alert("Authorization token is missing.");
+                return;
+            }
+
+            const response = await fetch('https://hastin-container.com/staging/api/vendor/create', {
+                method: 'POST',
+                headers: {
+                    'Authorization': `BslogiKey ${jwtToken}`,
+                    'Content-Type': 'application/json',
+                },
+                body: JSON.stringify(payload),  
+            });
+
+            if (!response.ok) {
+                throw new Error('Failed to create vendor');
+            }
+
+            const responseData = await response.json();
+            console.log(responseData);
+            alert("Vendor created successfully!");
+        } catch (error) {
+            console.error('Error:', error.message);
+            alert('Error: ' + error.message);
+        }
+    }
+}

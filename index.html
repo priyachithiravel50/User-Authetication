@@ -18,7 +18,7 @@
                     <h2>Welcome! Login Page</h2>
 
             <div class="form-floating mb-3">
-                <input type="text" class="form-control border-2 rounded-0 border-start-0 border-end-0 border-top-0" style="box-shadow: none;" id="Username" placeholder="Enter Username" name="Username" autocomplete="off">
+                <input type="text" class="form-control selected disabled border-2 rounded-0 border-start-0 border-end-0 border-top-0" style="box-shadow: none;" id="Username" placeholder="Enter Username" name="Username" autocomplete="off">
                 <label for="Username"><i class="fas fa-user"></i> Username</label>
                 <div id="nameError" class="text-danger"></div>
             </div>
@@ -53,7 +53,7 @@
                      Please enter the OTP below:</p>
                 <div>
                     <span id="otpPrefix" class="prefix"> </span>
-                    <input type="text" id="otpInput" maxlength="5" required>
+                    <input type="text" id="otpInput" class="selected disabled" maxlength="5"  required>
                     <!-- <p  class="text-danger">OTP has expired. Resend OTP</p> -->
                 </div>
                 <div class="timer d-flex">

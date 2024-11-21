@@ -235,10 +235,16 @@ height: 15px;
 }
 
 
-
 .form-container5 {
   margin: 15px;
   padding: 20px;
   border-radius: 10px;
   background-color: #f9f9f9;
+}
+
+@media (max-width: 1024px){
+  
+
+
+
 }

@@ -2,8 +2,6 @@ async function Click(event) {
   event.preventDefault();
   const nameError = document.getElementById('nameError');
   const passwordError = document.getElementById('passwordError');
-  nameError.textContent = '';
-  passwordError.textContent = '';
 
   const username = document.getElementById('Username').value;
   const password = document.getElementById('pswd').value;
@@ -14,14 +12,41 @@ async function Click(event) {
       nameError.style.color = "red";
       valid = false;
   }
+
+  else if (username !== "ebrain") {
+    nameError.textContent = " Invalid Username .";
+    nameError.style.color = "red";
+    nameError.style.fontSize = "13px";
+    nameError.style.paddingLeft = "15px";
+   valid = false;
+
+  }
+  else {
+    nameError.textContent = '';
+  }
+
   if (password.trim() === '') {
       passwordError.textContent = 'Password is required';
       passwordError.style.color = "red";
       valid = false;
+
+  }
+  else if (password !== "Ji#993te") {
+    passwordError.textContent = "Invalid password";
+    passwordError.style.color = "red";
+    passwordError.style.fontSize = "13px";
+    passwordError.style.paddingLeft = "15px";
+   valid = false;
+   
+  }
+  else {
+    passwordError.textContent = '';
   }
 
   if (valid) {
-      const data = { "userName": username, "password": password };
+      const data = { 
+        "userName": username, 
+        "password": password };
 
       try {
           const response = await fetch('https://hastin-container.com/staging/app/auth/login', {

@@ -69,65 +69,84 @@ async function vendortable() {
         alert("There was an error in user profile.");
     }
 }
+
 function displayTable(users) {
     const tableBody = document.getElementById('table-body');
     tableBody.innerHTML = ''; 
-    users.forEach((user,index) => {
-        const row = `<tr>
-       
-        <td>${index + 1}</td> 
-            <td>${user.vendorName}</td>
-            <td>${user.vendorCode}</td>
-            <td>${user.vendorType}</td>
-            <td>${user.address}</td>
-            <td>${user.country}</td>
-            <td>${user.status}</td>
-              <td>
-            <button onclick="editUser('${user.id}')"><i class="fa fa-pen text-danger"></i></button>
-
-    </td>
-        </tr>`;
+    users.forEach((user, index) => {
+        const row = `
+            <tr>
+                <td>${index + 1}</td> 
+                <td>${user.vendorName}</td>
+                <td>${user.vendorCode}</td>
+                <td>${user.vendorType}</td>
+                <td>${user.address}</td>
+                <td>${user.country}</td>
+                <td>${user.status}</td>
+                <td>
+             <button>
+             <i class='bx bxs-edit-alt fs-3  text-success' data-id="${user.id}"></i>                   
+              </button>
+                </td>
+            </tr>`;
         tableBody.innerHTML += row;
+    });
+    const editIcons = tableBody.querySelectorAll('.bxs-edit-alt');
+    editIcons.forEach(icon => {
+        icon.addEventListener('click', (event) => {
+            console.log(event)
+            const userId = event.target.getAttribute('data-id');
+            console.log(userId)
+            window.location.href = `table.html?id=${userId}`;
+            // editUser(userId);
+        });
     });
 }
 
+
+
+
+
+
+
+
 // async function editUser(id) {
-
-
-
 //     const jwtToken = localStorage.getItem('jwtToken');
         
 //     if (!jwtToken) {
 //         alert("Authorization token is missing.");
 //         return;
 //     }
+
 //     try {
-//         const response = await fetch(` https://hastin-container.com/staging/api/vendor/get/${id}`,{
+//         const response = await fetch(`https://hastin-container.com/staging/api/vendor/get/${id}`, {
 //             method: 'GET',
 //             headers: {
 //                 'Authorization': `BslogiKey ${jwtToken}`,
 //                 'Content-Type': 'application/json',
 //             },
 //         });
-//         if (response.ok) {
 
+//         if (response.ok) {
 //             const user = await response.json();
-//           document.getElementById('vendorName').value = user.vendorName;
-//           document.getElementById('vendorCode').value = user.vendorCode;
-//           document.getElementById('vendorType').value = user.vendorType;
-//           document.getElementById('registrationNo').value = user.taxRegNo;
-//           document.getElementById('comRegistrationNo').value = user.companyRegNo;
-//           document.getElementById('Currency').value = user.vendorName;
-//           document.getElementById('address1').value = user.address1;
-//           document.getElementById('address2').value = user. address2;
-//           document.getElementById('city').value = user.cityId;
-//           document.getElementById('choose').value = user. country;
-//           document.getElementById('zip').value = user.postalCode;
-//           document.getElementById('Name').value = user.name;
-//           document.getElementById('email').value = user.email;
-//           document.getElementById('phoneno').value = user.mobileNo;
+
+//             // Update form fields with fetched data
+//             document.getElementById('vendorName').value = user.vendorName;
+//             document.getElementById('vendorCode').value = user.vendorCode;
+//             document.getElementById('vendorType').value = user.vendorType;
+//             document.getElementById('registrationNo').value = user.taxRegNo;
+//             document.getElementById('comRegistrationNo').value = user.companyRegNo;
+//             document.getElementById('Currency').value = user.vendorName;
+//             document.getElementById('address1').value = user.address1;
+//             document.getElementById('address2').value = user.address2;
+//             document.getElementById('city').value = user.cityId;
+//             document.getElementById('choose').value = user.country;
+//             document.getElementById('zip').value = user.postalCode;
+//             document.getElementById('Name').value = user.name;
+//             document.getElementById('email').value = user.email;
+//             document.getElementById('phoneno').value = user.mobileNo;
+
 //             editingUserId = id; 
-//             addData(editingUserId)
 //         } else {
 //             throw new Error("Failed to fetch user data");
 //         }
@@ -137,55 +156,8 @@ function displayTable(users) {
 // }
 
 
-async function editUser(id) {
-    const jwtToken = localStorage.getItem('jwtToken');
 
-    if (!jwtToken) {
-        alert("Authorization token is missing.");
-        return;
-    }
 
-    try {
-        const response = await fetch(`https://hastin-container.com/staging/api/vendor/get/${id}`, {
-            method: 'GET',
-            headers: {
-                'Authorization': `BslogiKey ${jwtToken}`,
-                'Content-Type': 'application/json',
-            },
-        });
-
-        if (response.ok) {
-            const user = await response.json();
-
-            // Populate form fields with the user data
-            document.getElementById('vendorName').value = user.vendorName || '';
-            document.getElementById('vendorCode').value = user.vendorCode || '';
-            document.getElementById('vendorType').value = user.vendorType || '';
-            document.getElementById('registrationNo').value = user.taxRegNo || '';
-            document.getElementById('comRegistrationNo').value = user.companyRegNo || '';
-            document.getElementById('Currency').value = user.vendorName || '';
-            document.getElementById('address1').value = user.address1 || '';
-            document.getElementById('address2').value = user.address2 || '';
-            document.getElementById('city').value = user.cityId || '';
-            document.getElementById('choose').value = user.country || '';
-            document.getElementById('zip').value = user.postalCode || '';
-            document.getElementById('Name').value = user.name || '';
-            document.getElementById('email').value = user.email || '';
-            document.getElementById('phoneno').value = user.mobileNo || '';
-
-            // Set editingUserId and call addData
-            editingUserId = id;
-           
-                addData(editingUserId); // Ensure addData function exists
-       
-        } else {
-            throw new Error("Failed to fetch user data");
-        }
-    } catch (error) {
-        console.error("Error:", error);
-        alert('Error fetching user data: ' + error.message);
-    }
-}
 
 
 fetchUser();

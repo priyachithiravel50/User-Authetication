@@ -13,6 +13,7 @@
     <script src="table.js"></script> 
 </head>
 <body>
+    <!-- <div class="vendors"></div> -->
     <h2 class=" pt-3 ps-5">Vendor Details</h2>
     <div class="container-fluid d-flex" >
         <form id="vendor" class="form-container1 shadow">
@@ -163,7 +164,7 @@
     </div>
 
     <h2 class=" pt-3 ps-5">Contact Details</h2>
-    <div class="container mt-4" style="width: 90%;">
+    <div class="container mt-4">
        
         <table class="table table-bordered" id="contactTable">
             <thead class="table-light">
@@ -182,11 +183,11 @@
                     <td>1</td>
                     <div class="form-floating">
                     <td><input type="text" class="form-control border-2 rounded-0 border-start-0 border-end-0 border-top-0" id="Name" name="Name" style="box-shadow: none;" placeholder="Name" autocomplete="off">
-                    <div id="nameError"></div></td>
+                    <div id="nameError" class="text-danger"></div></td>
                     <td><input type="email" class="form-control border-2 rounded-0 border-start-0 border-end-0 border-top-0" id="email" name="email" style="box-shadow: none;" placeholder="Email" autocomplete="off">
-                    <div id="emailError"></div></td>
+                    <div id="emailError" class="text-danger"></div></td>
                     <td><input type="text" class="form-control border-2 rounded-0 border-start-0 border-end-0 border-top-0" id="phoneno" name="phoneno" style="box-shadow: none;" placeholder="Phone No" autocomplete="off">
-                    <div class="phonenoError"></div></td>
+                    <div id="phonenoError" class="text-danger"></div></td>
                     </div>
                     <td>
 

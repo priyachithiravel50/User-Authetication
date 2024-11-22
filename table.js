@@ -2,250 +2,71 @@ function addData(){
     window.location = "table.html";
 }
 
-// async function saveButton(event) { 
-//     event.preventDefault();
-
-//     let vendorName = document.getElementById('vendorName').value;
-//     let vendorCode = document.getElementById('vendorCode').value;
-//     let vendorType = document.getElementById('vendorType').value;
-//     let registrationNo = document.getElementById('registrationNo').value;
-//     let comRegistrationNo = document.getElementById('comRegistrationNo').value;
-//     let Currency = document.getElementById('Currency').value;
-//     let address1 = document.getElementById('address1').value;
-//     let address2 = document.getElementById('address2').value;
-//     let city = document.getElementById('city').value;
-//     let choose = document.getElementById('choose').value;
-//     let zip = document.getElementById('zip').value;
-//     let Name = document.getElementById('Name').value;
-//     let Email = document.getElementById('email').value;
-//     let phoneno = document.getElementById('phoneno').value;
-   
-
-//     let vendorError = document.getElementById('vendorError');
-//     let codeError = document.getElementById('codeError');
-//     let typeError = document.getElementById('typeError');
-//     let tagError = document.getElementById('tagError');
-//     let companyError = document.getElementById('companyError');
-//     let currencyError = document.getElementById('currencyError');
-//     let address1Error = document.getElementById('address1Error');
-//     let address2Error = document.getElementById('address2Error');
-//     let chooseError = document.getElementById('chooseError');
-//     let cityError = document.getElementById('cityError');
-//     let zipError = document.getElementById('zipError');
-//     let nameerror = document.getElementById('nameerror');
-//     let emailerror = document.getElementById('emailerror');
-//     let phonenoError = document.getElementById('phonenoError');
-   
+function getQueryParam() {
+    const urlParams = new URLSearchParams(window.location.search);
+    const id = urlParams.get("id"); 
+    console.log(id);
+    editUser(id); 
+  }
   
-
-//     let valid = true;
-
-//     if (vendorName.trim() === "") {
-//         vendorError.textContent = "Required*";
-//         vendorError.style.color = "red";
-//         vendorError.style.fontSize = "13px";
-//         vendorError.style.paddingLeft = "15px";
-//         valid = false;
-//     }
-//     else {
-//         vendorError.textContent = '';
-//     }
-//     if (vendorCode.trim() === "") {
-//        codeError.textContent = "Required*";
-//        codeError.style.color = "red";
-//        codeError.style.fontSize = "13px";
-//        codeError.style.paddingLeft = "15px";
-//         valid = false;
-//     }
-//     else {
-//        codeError.textContent = '';
-//     }
+  getQueryParam(); 
 
 
-//     if (vendorType.trim() === "") {
-//         typeError.textContent = "Required*";
-//         typeError.style.color = "red";
-//         typeError.style.fontSize = "13px";
-//         typeError.style.paddingLeft = "15px";
-//          valid = false;
-//      }
-//      else {
-//         typeError.textContent = '';
-//      }
- 
-//      if (registrationNo.trim() === "") {
-//        tagError.textContent = "Required*";
-//        tagError.style.color = "red";
-//        tagError.style.fontSize = "13px";
-//        tagError.style.paddingLeft = "15px";
-//          valid = false;
-//      }
-//      else {
-//        tagError.textContent = '';
-//      }
-
-//      if (comRegistrationNo.trim() === "") {
-//        companyError.textContent = " Required*";
-//        companyError.style.color = "red";
-//        companyError.style.fontSize = "13px";
-//        companyError.style.paddingLeft = "15px";
-//          valid = false;
-//      }
-//      else {
-//        companyError.textContent = '';
-//      }
-//      if (Currency.trim() === "") {
-//         currencyError.textContent = " Required*";
-//         currencyError.style.color = "red";
-//         currencyError.style.fontSize = "13px";
-//         currencyError.style.paddingLeft = "15px";
-//          valid = false;
-//      }
-//      else {
-//         currencyError.textContent = '';
-//      }
-
-//      if (address1.trim() === "") {
-//       address1Error.textContent = " Required*";
-//       address1Error.style.color = "red";
-//       address1Error.style.fontSize = "13px";
-//       address1Error.style.paddingLeft = "15px";
-//        valid = false;
-//    }
-//    else {
-//     address1Error.textContent = '';
-//    }
-     
-//    if (address2.trim() === "") {
-//     address2Error.textContent = " Required*";
-//     address2Error.style.color = "red";
-//     address2Error.style.fontSize = "13px";
-//     address2Error.style.paddingLeft = "15px";
-//      valid = false;
-//  }
-//  else {
-//   address2Error.textContent = '';
-//  }
-   
+async function editUser(id) {
+    const jwtToken = localStorage.getItem('jwtToken');
         
-//     if (choose.trim() === "") {
-//     chooseError.textContent = " Required*";
-//     chooseError.style.color = "red";
-//     chooseError.style.fontSize = "13px";
-//     chooseError.style.paddingLeft = "15px";
-//     valid = false;
-//     }
-//     else {
-//     chooseError.textContent = '';
-//     }
+    // if (!jwtToken) {
+    //     alert("Authorization token is missing.");
+    //     return;
+    // }
 
-//     if (city.trim() === "") {
-//       cityError.textContent = " Required*";
-//       cityError.style.color = "red";
-//       cityError.style.fontSize = "13px";
-//       cityError.style.paddingLeft = "15px";
-//       valid = false;
-//       }
-//       else {
-//         cityError.textContent = '';
-//       }
+    try {
+        const response = await fetch(`https://hastin-container.com/staging/api/vendor/get/${id}`, {
+            method: 'GET',
+            headers: {
+                'Authorization': `BslogiKey ${jwtToken}`,
+                'Content-Type': 'application/json'
+            },
+        });
 
-//     if (zip.trim() === "") {
-//       zipError.textContent = " Required*";
-//       zipError.style.color = "red";
-//       zipError.style.fontSize = "13px";
-//       zipError.style.paddingLeft = "15px";
-//       valid = false;
-//       }
-//       else {
-//         zipError.textContent = '';
-//       }
+        if (response.ok) {
+            const user = await response.json();
+            const data = user.data;
+            // Update form fields with fetched data
+            document.getElementById('vendorName').value = data.vendorName;
+            document.getElementById('vendorCode').value = data.vendorCode;
+            document.getElementById('vendorType').value = data.vendorType;
+            document.getElementById('registrationNo').value = data.taxRegNo;
+            document.getElementById('comRegistrationNo').value = data.companyRegNo;
+            document.getElementById('Currency').value = data.vendorName;
+            document.getElementById('address1').value = data.address1;
+            document.getElementById('address2').value = data.address2;
+            document.getElementById('city').value = data.city;
+            document.getElementById('choose').value = data.choose;
+            document.getElementById('zip').value = data.postalCode;
+            document.getElementById('Name').value = data.name;
+            document.getElementById('email').value = data.email;
+            document.getElementById('phoneno').value = data.mobileNo;
 
-//       if (Name.trim() === "") {
-//         nameerror.textContent = " Required*";
-//         nameerror.style.color = "red";
-//         nameerror.style.fontSize = "13px";
-//         nameerror.style.paddingLeft = "15px";
-//          valid = false;
-//      }
-//      else {
-//         nameerror.textContent = '';
-//      }
-//      if (Email.trim() === "") {
-//         emailerror.textContent = " Required*";
-//         emailerror.style.color = "red";
-//         emailerror.style.fontSize = "13px";
-//         emailerror.style.paddingLeft = "15px";
-//          valid = false;
-//      }
-//      else {
-//         emailerror.textContent = '';
-//      }
-//      if (phoneno.trim() === "") {
-//          phonenoError.textContent = " Required*";
-//          phonenoError.style.color = "red";
-//          phonenoError.style.fontSize = "13px";
-//          phonenoError.style.paddingLeft = "15px";
-//           valid = false;
-//       }
-//       else {
-//          phonenoError.textContent = '';
-//       }
- 
-//       if (valid) {
-//         const payload = {
-//             contactList: [
-//                 {
-//                     name: Name,  
-//                     email: Email,
-//                     mobileNo: mobileno,
-//                     isDefault: isdefault, 
-//                     id: null
-//                 }
-//             ],
-//             vendorName: vendorName,
-//             vendorCode: vendorCode,
-//             vendorType: vendorType,
-//             taxRegNo: registrationNo,
-//             companyRegNo: comRegistrationNo,
-//             address1: address1,
-//             address2: address2,
-//             country: choose,
-//             postalCode: zip,
-//             cityId: city,
-//             createdBy: "adf8906a-cf9a-490f-a233-4df16fc86c58",
-//             documentList: []
-//         };
-
-//         try {
-//             const jwtToken = localStorage.getItem('jwtToken');  
-//             if (!jwtToken) {
-//                 alert("Authorization token is missing.");
-//                 return;
-//             }
-
-//             const response = await fetch('https://hastin-container.com/staging/api/vendor/create', {
-//                 method: 'POST',
-//                 headers: {
-//                     'Authorization': `BslogiKey ${jwtToken}`,
-//                     'Content-Type': 'application/json',
-//                 },
-//                 body: JSON.stringify(payload),  
-//             });
-
-//             if (!response.ok) {
-//                 throw new Error('Failed to create vendor');
-//             }
-
-//             const responseData = await response.json();
-//             console.log(responseData);
-//             alert("Vendor created successfully!");
-//         } catch (error) {
-//             console.error('Error:', error.message);
-//             alert('Error: ' + error.message);
-//         }
-//     }
-// }
+    
+            for (let i = 0; i <data.contactList.length; i++) {
+                document.getElementById('Name').value =data.contactList[i].Name;
+                document.getElementById('Email').value =data.contactList[i].email;
+                document.getElementById('phoneNumber').value =data.contactList[i].phoneno;
+                document.getElementById('chooseDefault').value =data.contactList[i].isdefault;
+              }
+                editingUserId = id;     
+               
+        } else {
+            throw new Error("Failed to fetch user data");
+        }
+    } catch (error) {
+        console.error("Error:", error);
+    }
+}
+document.addEventListener('DOMContentLoaded',() => {
+    editUser();
+});
 
     
 async function saveButton(event) {
@@ -264,7 +85,7 @@ async function saveButton(event) {
     let choose = document.getElementById('choose').value;
     let zip = document.getElementById('zip').value;
     let Name = document.getElementById('Name').value;
-    let Email = document.getElementById('email').value;
+    let email = document.getElementById('email').value;
     let phoneno = document.getElementById('phoneno').value;
 
     // Error elements
@@ -279,8 +100,8 @@ async function saveButton(event) {
     let chooseError = document.getElementById('chooseError');
     let cityError = document.getElementById('cityError');
     let zipError = document.getElementById('zipError');
-    let nameerror = document.getElementById('nameerror');
-    let emailerror = document.getElementById('emailerror');
+    let nameError = document.getElementById('nameError');
+    let emailError = document.getElementById('emailError');
     let phonenoError = document.getElementById('phonenoError');
 
     let valid = true;
@@ -364,17 +185,17 @@ async function saveButton(event) {
     }
 
     if (Name.trim() === "") {
-        if (nameerror) nameerror.textContent = "Required*";
+        if (nameError) nameError.textContent = "Required*";
         valid = false;
     } else {
-        if (nameerror) nameerror.textContent = '';
+        if (nameError) nameError.textContent = '';
     }
 
-    if (Email.trim() === "") {
-        if (emailerror) emailerror.textContent = "Required*";
+    if (email.trim() === "") {
+        if (emailError) emailError.textContent = "Required*";
         valid = false;
     } else {
-        if (emailerror) emailerror.textContent = '';
+        if (emailError) emailError.textContent = '';
     }
 
     if (phoneno.trim() === "") {
@@ -390,7 +211,7 @@ async function saveButton(event) {
             contactList: [
                 {
                     name: Name,
-                    email: Email,
+                    email: email,
                     mobileNo: phoneno,
                     isDefault: true,
                     id: null
@@ -411,13 +232,13 @@ async function saveButton(event) {
         };
 
         try {
-            let response;
+            // let response;
             const jwtToken = localStorage.getItem('jwtToken');
             if (!jwtToken) {
                 alert("Authorization token is missing.");
                 return;
             }
-            console.log(editingUserId)
+            // console.log(editingUserId)
             if (editingUserId) {
                 response = await fetch(`https://hastin-container.com/staging/api/vendor/update/${editingUserId}`, {
                     method: 'PUT',
@@ -425,7 +246,7 @@ async function saveButton(event) {
                         'Authorization': `BslogiKey ${jwtToken}`,
                         'Content-Type': 'application/json',
                     },
-                    body: JSON.stringify(data)
+                    body: JSON.stringify(payload),
                 });
             } else {
             const response = await fetch('https://hastin-container.com/staging/api/vendor/create', {
@@ -434,32 +255,28 @@ async function saveButton(event) {
                     'Authorization': `BslogiKey ${jwtToken}`,
                     'Content-Type': 'application/json',
                 },
-                body: JSON.stringify(payload),
+                body: JSON.stringify(data),
             });
         }
-
 
             if (!response.ok) {
                 throw new Error('Failed to create vendor');
             }
-
-
             const responseData = await response.json();
             console.log(editingUserId ? "User updated successfully:" : "User created successfully:", responseData);
             alert(editingUserId ? "User updated successfully!" : "User created successfully!");
-            // document.getElementById('form').reset(); 
+            // document.getElementById('vendors').reset(); 
             editingUserId = null; 
-
-
 
             alert("Vendor created successfully!");
         } catch (error) {
+
             console.error('Error:', error.message);
             alert('Error: ' + error.message);
         }
     }
-}
 
+}
 
 
 

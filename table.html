@@ -20,7 +20,7 @@
             <div class="forms">
             <h4 style="margin-left: 2%;">Basic details</h4>
         <div class="box1">
-      <div class="form-floating mb-3" aria-autocomplete="off">
+      <div class="form-floating mb-3">
         <input type="text" class="form-control border-2 rounded-0 border-start-0 border-end-0 border-top-0" style="box-shadow: none;" id="vendorName" placeholder="vendorName" name="vendorName" autocomplete="off">
         <label for="vendorName"> Vendor Name</label>
         <div id="vendorError" class="text-danger"></div>
@@ -77,19 +77,19 @@
     <div class="box1">
 
         <div class="form-floating mb-3" >
-        <input type="text" class="form-control border-2 rounded-0 border-start-0 border-end-0 border-top-0" style="box-shadow: none;" id="address1" placeholder="Address1" name="Username" autocomplete="off">
+        <input type="text" class="tag form-control border-2 rounded-0 border-start-0 border-end-0 border-top-0" style="box-shadow: none;" id="address1" placeholder="Address1" name="Username" autocomplete="off">
         <label for="Address1"> Address1</label>
         <div id="address1Error" class="text-danger"></div>
 
         </div>
         <div class="form-floating mb-3">
-        <input type="text" class="form-control border-2 rounded-0 border-start-0 border-end-0 border-top-0" style="box-shadow: none;" id="address2" placeholder="Address2" name="Username" autocomplete="off">
+        <input type="text" class=" tag form-control border-2 rounded-0 border-start-0 border-end-0 border-top-0" style="box-shadow: none;" id="address2" placeholder="Address2" name="Username" autocomplete="off">
         <label for="Address2"> Address2</label>
         <div id="address2Error" class="text-danger"></div>
 
         </div>
         <div class="form-floating mb-3">
-        <select class="form-control border-2 rounded-0 border-start-0 border-end-0 border-top-0" style="box-shadow: none;" id="choose" placeholder="Choose Country" name="Username" autocomplete="off">
+        <select class="tag form-control border-2 rounded-0 border-start-0 border-end-0 border-top-0" style="box-shadow: none;" id="choose" placeholder="Choose Country" name="Username" autocomplete="off">
             <option value=""disabled selected>Select a Currency</option>
         </select>
         <!-- <label for="Choose Country"> Choose Country</label> -->
@@ -98,7 +98,7 @@
         </div>
 
         <div class="form-floating mb-3">
-        <select class="form-control border-2 rounded-0 border-start-0 border-end-0 border-top-0" style="box-shadow: none;" id="city" placeholder="Choose City" name="Username" autocomplete="off">
+        <select class="tag form-control border-2 rounded-0 border-start-0 border-end-0 border-top-0" style="box-shadow: none;" id="city" placeholder="Choose City" name="Username" autocomplete="off">
             <option value=""disabled selected>Select a city</option>
         </select>
 
@@ -108,7 +108,7 @@
         </div>
 
         <div class="form-floating mb-3">
-        <input type="text" class="form-control border-2 rounded-0 border-start-0 border-end-0 border-top-0" style="box-shadow: none;" id="zip" placeholder="Zip Code" name="Username" autocomplete="off">
+        <input type="text" class="tag form-control border-2 rounded-0 border-start-0 border-end-0 border-top-0" style="box-shadow: none;" id="zip" placeholder="Zip Code" name="Username" autocomplete="off">
         <label for="Zip Code">Zip code</label>
         <div id="zipError" class="text-danger"></div>
 
@@ -206,7 +206,7 @@
 
 
    <!-- Change the type to "button" to avoid form submission conflict -->
-<button type="button" class="save" id="save" onclick="saveButton(event)">SAVE</button>
+<button type="submit" class="save" id="save" onclick="saveButton(event)">SAVE</button>
 
 
    

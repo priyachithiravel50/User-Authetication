@@ -11,14 +11,13 @@ function getQueryParam() {
   
   getQueryParam(); 
 
-
-async function editUser(id) {
+  async function editUser(id) {
     const jwtToken = localStorage.getItem('jwtToken');
         
-    // if (!jwtToken) {
-    //     alert("Authorization token is missing.");
-    //     return;
-    // }
+    if (!jwtToken) {
+        alert("Authorization token is missing.");
+        return;
+    }
 
     try {
         const response = await fetch(`https://hastin-container.com/staging/api/vendor/get/${id}`, {
@@ -36,40 +35,43 @@ async function editUser(id) {
             document.getElementById('vendorName').value = data.vendorName;
             document.getElementById('vendorCode').value = data.vendorCode;
             document.getElementById('vendorType').value = data.vendorType;
-            document.getElementById('registrationNo').value = data.taxRegNo;
-            document.getElementById('comRegistrationNo').value = data.companyRegNo;
+            document.getElementById('registrationNo').value = data.registrationNo;
+            document.getElementById('comRegistrationNo').value = data.comRegistrationNo;
             document.getElementById('Currency').value = data.vendorName;
             document.getElementById('address1').value = data.address1;
             document.getElementById('address2').value = data.address2;
             document.getElementById('city').value = data.city;
             document.getElementById('choose').value = data.choose;
-            document.getElementById('zip').value = data.postalCode;
-            document.getElementById('Name').value = data.name;
+            document.getElementById('zip').value = data.zip;
+            document.getElementById('Name').value = data.Name;
             document.getElementById('email').value = data.email;
             document.getElementById('phoneno').value = data.mobileNo;
 
     
             for (let i = 0; i <data.contactList.length; i++) {
                 document.getElementById('Name').value =data.contactList[i].Name;
-                document.getElementById('Email').value =data.contactList[i].email;
-                document.getElementById('phoneNumber').value =data.contactList[i].phoneno;
-                document.getElementById('chooseDefault').value =data.contactList[i].isdefault;
+                document.getElementById('email').value =data.contactList[i].email;
+                document.getElementById('phoneno').value =data.contactList[i].phoneno;
+                document.getElementById('isdefault').value =data.contactList[i].isdefault;
               }
                 editingUserId = id;     
                
         } else {
             throw new Error("Failed to fetch user data");
         }
-    } catch (error) {
+    } 
+    catch (error) {
         console.error("Error:", error);
     }
 }
+
 document.addEventListener('DOMContentLoaded',() => {
     editUser();
 });
 
-    
-async function saveButton(event) {
+
+
+async function saveButton(event,id) {
     event.preventDefault();
 
     // Get form values
@@ -100,8 +102,8 @@ async function saveButton(event) {
     let chooseError = document.getElementById('chooseError');
     let cityError = document.getElementById('cityError');
     let zipError = document.getElementById('zipError');
-    let nameError = document.getElementById('nameError');
-    let emailError = document.getElementById('emailError');
+    let nameerror = document.getElementById('nameerror');
+    let emailerror = document.getElementById('emailerror');
     let phonenoError = document.getElementById('phonenoError');
 
     let valid = true;
@@ -185,17 +187,17 @@ async function saveButton(event) {
     }
 
     if (Name.trim() === "") {
-        if (nameError) nameError.textContent = "Required*";
+        if (nameerror) nameerror.textContent = "Required*";
         valid = false;
     } else {
-        if (nameError) nameError.textContent = '';
+        if (nameerror) nameerror.textContent = '';
     }
 
     if (email.trim() === "") {
-        if (emailError) emailError.textContent = "Required*";
+        if (emailerror) emailerror.textContent = "Required*";
         valid = false;
     } else {
-        if (emailError) emailError.textContent = '';
+        if (emailerror) emailerror.textContent = '';
     }
 
     if (phoneno.trim() === "") {
@@ -206,7 +208,71 @@ async function saveButton(event) {
     }
 
     // If all fields are valid, send the data
+
     if (valid) {
+        const jwtToken = localStorage.getItem("jwtToken");
+    
+        // try {
+        if (id) {
+          const payload = {
+            id: parentId,
+            vendorName: vendorName,
+            vendorCode: vendorCode,
+            vendorType: vendorType,
+            taxRegNo: registrationNo,
+            companyRegNo: comRegistrationNo,
+            // currencyContainer:currencyContainer,
+            defaultCurrencyId: currencyContainer,
+            address1: add1,
+            address2: add2,
+            country: country,
+            postalCode: zip,
+            bankAcctName: "null",
+            bankName: "null",
+            bankBranchName: "null",
+            bankAccountNum: "null",
+            bankSwiftCode: "null",
+            notes: "null",
+            createdBy: "adf8906a-cf9a-490f-a233-4df16fc86c58",
+          
+            contactList: [
+              {
+                name: Name,
+                email: email,
+                mobileNo: mobileno,
+                isDefault: isdefault,
+                id: rowId ? rowId : "",
+              },
+            ],
+            documentList: [],
+            cityId: "1d7a3d67-1598-41aa-9a2c-2a18b738a1ce",
+            cityName: "null",
+          };
+
+
+          const response = await fetch("https://hastin-container.com/staging/api/vendor/update",
+            {
+              method: "PUT",
+              headers: {
+                Authorization: `BslogiKey ${jwtToken}`,
+                "Content-Type": "application/json",
+              },
+              body: JSON.stringify(payload),
+            }
+          );
+    
+          if (response.ok) {
+            const result = await response.json();
+            console.log("Vendor Updated Successfully:", result);
+            alert("Vendor Updated Successfully!");
+    
+            //document.getElementById("formpage").reset();
+          } else {
+            throw new Error("Vendor creation failed!");
+          }
+        }else{
+
+         if (valid) {
         const payload = {
             contactList: [
                 {
@@ -232,56 +298,38 @@ async function saveButton(event) {
         };
 
         try {
-            // let response;
             const jwtToken = localStorage.getItem('jwtToken');
             if (!jwtToken) {
                 alert("Authorization token is missing.");
                 return;
             }
-            // console.log(editingUserId)
-            if (editingUserId) {
-                response = await fetch(`https://hastin-container.com/staging/api/vendor/update/${editingUserId}`, {
-                    method: 'PUT',
-                    headers: {
-                        'Authorization': `BslogiKey ${jwtToken}`,
-                        'Content-Type': 'application/json',
-                    },
-                    body: JSON.stringify(payload),
-                });
-            } else {
+
             const response = await fetch('https://hastin-container.com/staging/api/vendor/create', {
                 method: 'POST',
                 headers: {
                     'Authorization': `BslogiKey ${jwtToken}`,
                     'Content-Type': 'application/json',
                 },
-                body: JSON.stringify(data),
+                body: JSON.stringify(payload),
             });
-        }
 
             if (!response.ok) {
                 throw new Error('Failed to create vendor');
             }
-            const responseData = await response.json();
-            console.log(editingUserId ? "User updated successfully:" : "User created successfully:", responseData);
-            alert(editingUserId ? "User updated successfully!" : "User created successfully!");
-            // document.getElementById('vendors').reset(); 
-            editingUserId = null; 
 
+            const responseData = await response.json();
+            console.log(responseData);
             alert("Vendor created successfully!");
         } catch (error) {
-
             console.error('Error:', error.message);
             alert('Error: ' + error.message);
         }
     }
-
+}
+}
 }
 
-
-
-
-
+   
 
  async function populateCurrencies() {
   try {

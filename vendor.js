@@ -85,7 +85,7 @@ function displayTable(users) {
                 <td>${user.status}</td>
                 <td>
              <button>
-             <i class='bx bxs-edit-alt fs-3  text-success' data-id="${user.id}"></i>                   
+             <i class='bx bxs-edit-alt fs-3  text-danger' data-id="${user.id}"></i>                   
               </button>
                 </td>
             </tr>`;
@@ -102,61 +102,6 @@ function displayTable(users) {
         });
     });
 }
-
-
-
-
-
-
-
-
-// async function editUser(id) {
-//     const jwtToken = localStorage.getItem('jwtToken');
-        
-//     if (!jwtToken) {
-//         alert("Authorization token is missing.");
-//         return;
-//     }
-
-//     try {
-//         const response = await fetch(`https://hastin-container.com/staging/api/vendor/get/${id}`, {
-//             method: 'GET',
-//             headers: {
-//                 'Authorization': `BslogiKey ${jwtToken}`,
-//                 'Content-Type': 'application/json',
-//             },
-//         });
-
-//         if (response.ok) {
-//             const user = await response.json();
-
-//             // Update form fields with fetched data
-//             document.getElementById('vendorName').value = user.vendorName;
-//             document.getElementById('vendorCode').value = user.vendorCode;
-//             document.getElementById('vendorType').value = user.vendorType;
-//             document.getElementById('registrationNo').value = user.taxRegNo;
-//             document.getElementById('comRegistrationNo').value = user.companyRegNo;
-//             document.getElementById('Currency').value = user.vendorName;
-//             document.getElementById('address1').value = user.address1;
-//             document.getElementById('address2').value = user.address2;
-//             document.getElementById('city').value = user.cityId;
-//             document.getElementById('choose').value = user.country;
-//             document.getElementById('zip').value = user.postalCode;
-//             document.getElementById('Name').value = user.name;
-//             document.getElementById('email').value = user.email;
-//             document.getElementById('phoneno').value = user.mobileNo;
-
-//             editingUserId = id; 
-//         } else {
-//             throw new Error("Failed to fetch user data");
-//         }
-//     } catch (error) {
-//         console.error("Error:", error);
-//     }
-// }
-
-
-
 
 
 

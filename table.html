@@ -15,7 +15,7 @@
 <body>
     <!-- <div class="vendors"></div> -->
     <h2 class=" pt-3 ps-5">Vendor Details</h2>
-    <div class="container-fluid d-flex" >
+    <div class="container-fluid d-lg-flex d-md-block" >
         <form id="vendor" class="form-container1 shadow">
             <div class="forms">
             <h4 style="margin-left: 2%;">Basic details</h4>
@@ -56,7 +56,7 @@
     </div>
 
     <div class="form-floating mb-3">
-        <select class="form-control border-2 rounded-0 border-start-0 border-end-0 border-top-0" style="box-shadow: none;" id="Currency" placeholder="Choose Currency" name="Username" autocomplete="off">
+        <select class="form-control border-2 rounded-0 border-start-0 border-end-0 border-top-0" style="box-shadow: none;" id="currencyContainer" placeholder="Choose Currency" name="Username" autocomplete="off">
         <option value=""disabled selected>Select a Currency</option>
     </select>
         <!-- <label for="Username"> Choose Currency</label> -->
@@ -77,24 +77,24 @@
     <div class="box1">
 
         <div class="form-floating mb-3" >
-        <input type="text" class="tag form-control border-2 rounded-0 border-start-0 border-end-0 border-top-0" style="box-shadow: none;" id="address1" placeholder="Address1" name="Username" autocomplete="off">
+        <input type="text" class="tag form-control border-2 rounded-0 border-start-0 border-end-0 border-top-0" style="box-shadow: none;" id="add1" placeholder="Address1" name="Username" autocomplete="off">
         <label for="Address1"> Address1</label>
         <div id="address1Error" class="text-danger"></div>
 
         </div>
         <div class="form-floating mb-3">
-        <input type="text" class=" tag form-control border-2 rounded-0 border-start-0 border-end-0 border-top-0" style="box-shadow: none;" id="address2" placeholder="Address2" name="Username" autocomplete="off">
+        <input type="text" class=" tag form-control border-2 rounded-0 border-start-0 border-end-0 border-top-0" style="box-shadow: none;" id="add2" placeholder="Address2" name="Username" autocomplete="off">
         <label for="Address2"> Address2</label>
         <div id="address2Error" class="text-danger"></div>
 
         </div>
         <div class="form-floating mb-3">
-        <select class="tag form-control border-2 rounded-0 border-start-0 border-end-0 border-top-0" style="box-shadow: none;" id="choose" placeholder="Choose Country" name="Username" autocomplete="off">
-            <option value=""disabled selected>Select a Currency</option>
+        <select class="tag form-control border-2 rounded-0 border-start-0 border-end-0 border-top-0" style="box-shadow: none;" id="country" placeholder="Choose Country" name="Username" autocomplete="off">
+            <option value=""disabled selected>Select a Country</option>
         </select>
         <!-- <label for="Choose Country"> Choose Country</label> -->
 
-        <div id="chooseError" class="text-danger"></div>
+        <div id="countryError" class="text-danger"></div>
         </div>
 
         <div class="form-floating mb-3">
@@ -180,7 +180,7 @@
             <tbody>
                 <!-- First Row (Cannot be Deleted) -->
                 <tr>
-                    <td>1</td>
+                    <td class="sno" style="text-align: center;"  name="rowId" id="rowId">1</td>
                     <div class="form-floating">
                     <td><input type="text" class="form-control border-2 rounded-0 border-start-0 border-end-0 border-top-0" id="Name" name="Name" style="box-shadow: none;" placeholder="Name" autocomplete="off">
                     <div id="nameError" class="text-danger"></div></td>

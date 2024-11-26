@@ -159,9 +159,9 @@ body{
   margin-bottom: 5px;
 
 }
-/* #var{
+#var{
   margin-left: 93%;
-} */
+}
 
 .btn-primary{
   width: 100px;
@@ -221,7 +221,6 @@ body{
   #var{
     margin-left: 90%;
   }
- 
 }
 
 

@@ -70,7 +70,7 @@ async function editUser(id) {
         data.contactList[i].isDefault;
         document.getElementById("rowId").value = data.contactList[i].id;
     }
-    console.log(   document.getElementById("rowId").value)
+    console.log(document.getElementById("rowId").value)
 
   } else {
     throw new Error("Failed to fetch user data");
@@ -307,8 +307,7 @@ async function saveButton(event) {
         createdBy: "adf8906a-cf9a-490f-a233-4df16fc86c58",
         documentList: [],
       };
-      const response = await fetch(
-        "https://hastin-container.com/staging/api/vendor/create",
+      const response = await fetch( "https://hastin-container.com/staging/api/vendor/create",
         {
           method: "POST",
           headers: {
@@ -334,9 +333,85 @@ async function saveButton(event) {
     //     alert("An error occurred while creating the vendor.");
     // }
   }
+
+ 
+ //Contact
+  
+  const payload = { 
+        name: Name,
+        email: email,
+        mobileNo: phoneno,
+        isDefault: true,
+        id: null,
+        vendorId: "d791a8b0-4043-4cf0-b706-7791ead5a61d",
+        createdBy: "adf8906a-cf9a-490f-a233-4df16fc86c58"
+
+    };
+
+  try {
+      const response = await fetch('https://hastin-container.com/staging/api/vendor/contact/create', {
+          method: 'POST',
+          headers: {
+             'Content-Type': 'application/json'
+             },
+          body: JSON.stringify(payload)
+      });
+
+      if (response.ok) {
+          const result = await response.json();
+            console.log("Created Successfully:", result);
+
+          // alert("User created successfully!");
+
+      } else {
+          throw new Error("create failed");
+      }
+  } catch (error) {
+      console.error("Error:", error);
+      alert("There was an error in the form.");
+  
+}
+ 
+  //     const payload = {
+  //       name: Name,
+  //       email: email,
+  //       mobileNo: phoneno,
+  //       isDefault: true,
+  //       id: null,
+  //       vendorId: "d791a8b0-4043-4cf0-b706-7791ead5a61d",
+  //       createdBy: "111c9720-4abb-4beb-9303-34d0f2df67da"
+
+  // }
+
+      
+        // const response = await fetch(" https://hastin-container.com/staging/api/vendor/contact/create",
+        //   {
+        //     method: "POST",
+        //     headers: {
+        //       Authorization: `BslogiKey ${jwtToken}`,
+        //       "Content-Type": "application/json",
+        //     },
+        //     body: JSON.stringify(payload),
+        //   }
+        // );
+  
+        // if (response.ok) {
+        //   const result = await response.json();
+        //   console.log("Created Successfully:", result);
+        //   alert("Created Successfully!");
+  
+        //   // document.getElementById("formpage").reset();
+        // } else {
+        //   throw new Error("creation failed!");
+        // }
+
+
 }
 
-////currency api
+
+
+
+//currency api
 
 async function fetchCurrencies() {
   const jwtToken = localStorage.getItem("jwtToken");
@@ -490,6 +565,8 @@ fetchCurrencies();
 // contact Page
 
 
+
+
 document.addEventListener("DOMContentLoaded", () => {
     const addRowBtn = document.getElementById("addRowBtn");
     const contactTable = document.getElementById("contactTable").querySelector("tbody");
@@ -512,7 +589,9 @@ document.addEventListener("DOMContentLoaded", () => {
                  
                 </select>
             </td>
-            <td><button class="btn btn-sm mt-2 ms-3 removeRowBtn" style = "width:60%;"><i class="fa-solid fa-trash text-danger"></i></button>
+            <td>
+            <button class="addRowBtn"><i class="fa-solid fa-check text-success"></i></button>
+            <button class="removeRowBtn" ><i class="fa-solid fa-trash text-danger"></i></button>
             </td>
         `;
 
@@ -522,6 +601,7 @@ document.addEventListener("DOMContentLoaded", () => {
         removeBtn.addEventListener("click", () => {
             newRow.remove();
         });
+        
     });
 
     contactTable.addEventListener("click", (e) => {
@@ -530,6 +610,8 @@ document.addEventListener("DOMContentLoaded", () => {
         }
     });
 });
+
+
 
 
 

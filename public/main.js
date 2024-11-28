@@ -169,7 +169,7 @@ async function sendOtp(data) {
           const result = await response.json();
           console.log("OTP verified:", result);
           alert("OTP verified!");
-          window.location = "Vendor.html"
+          window.location = "vendor.html"
           document.getElementById('form').reset();
         //   closeOtpModal();
          // Display the success message

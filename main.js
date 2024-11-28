@@ -69,8 +69,6 @@ async function Click(event) {
                 //  // Display OTP success message
                 //  alert("OTP verified successfully!" );
 
-              
-
               // Call openOtpModal to display the OTP modal
               openOtpModal();
           } else {
@@ -169,7 +167,7 @@ async function sendOtp(data) {
           const result = await response.json();
           console.log("OTP verified:", result);
           alert("OTP verified!");
-          window.location = "Vendor.html"
+          window.location = "vendor.html"
           document.getElementById('form').reset();
         //   closeOtpModal();
          // Display the success message

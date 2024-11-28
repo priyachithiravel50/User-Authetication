@@ -84,9 +84,9 @@ function displayTable(users) {
                 <td>${user.country}</td>
                 <td>${user.status}</td>
                 <td>
-             <button>
-             <i class='bx bxs-edit-alt fs-3  text-danger' data-id="${user.id}"></i>                   
-              </button>
+           
+             <i class='bx bxs-edit-alt fs-3  text-success' data-id="${user.id}"></i>                   
+              
                 </td>
             </tr>`;
         tableBody.innerHTML += row;

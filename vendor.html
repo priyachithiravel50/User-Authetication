@@ -18,18 +18,25 @@
     <h1 class="table-title fs-3 mt-4 "></h1>
     <div  id="top-table" >
         <table class="table table-bordered " style="text-align: center;">
+            <img src="images.jpg" alt="images" id="images" onclick="logout()" width="60px" height="60px"style="cursor: pointer;" title="Logout">
         
-            <div class="name">
-                <h3 class="ms-3 mt-1 fs-3">Vendor Details</h3>
+            <!-- <div class="name"> -->
+                <!-- <h3 class="ms-3 mt-1 fs-3">Vendor Details</h3> -->
+           
             <!-- <div class="values mt-1 me-1" id="val"> -->
                 <!-- <div class="value"> -->
-                <i class="fas fa-user  me-2" id="user" ></i>
+                 <div class="name">
+                <i class="fas fa-user  fs-4 mt-1" id="user" ></i>
                 <h3 id="userName" class="username"></h3>
         </div>
-       
+        
         <!-- <div style="display: flex; justify-content: right;"> -->
-           
-        <button type="submit" onclick="addData()" class="btn btn-success " id="var">Add Data</button></div>
+      <!-- <h3 class="ms-3 mt-1 fs-3">Vendor Details</h3> -->
+       <div class="detail mb-2">
+          <h3 class="ms-3 mt-1 fs-3">Vendor Details</h3>
+        <button type="submit" onclick="addData()" class="btn btn-success " id="var"> +New vendor</button>
+    </div>
+        
             <thead>
                 <tr style="font-size: 13.8px;">
                     <th>S/No</th>
@@ -52,6 +59,5 @@
 
 </body>
 </html>
-
 
 

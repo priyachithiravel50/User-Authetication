@@ -100,8 +100,10 @@ async function Click(event) {
   
   }
 
+
 // Open OTP Modal
 function openOtpModal() {
+
   const opaque = localStorage.getItem('opaque');
   const accessCode = localStorage.getItem('accessCode');
 
@@ -145,6 +147,8 @@ function closeOtpModal() {
   document.getElementById('otpModal').style.display = 'none';
   clearInterval(timerInterval);
 }
+
+
 
 async function sendOtp(data) {
   try {

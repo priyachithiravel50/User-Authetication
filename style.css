@@ -23,6 +23,15 @@ body{
 .form-floating label i {
   margin-right: 8px;
 }
+
+.container-fluid .form-floating input{
+  margin-left: 3%;
+}
+
+.form-floating select{
+  margin-left: 3%;
+}
+
 .span{
   margin-top: 16px;
 }
@@ -148,27 +157,40 @@ body{
   color: #203864;
   /* justify-content: space-between; */
   text-transform: capitalize;
+  margin-left: 1380px;
+}
+.detail{
+  display: flex;
+  
+  /* justify-content: space-between; */
 }
 
 /* .values{
   display: flex;
   color: #203864;
 } */
-#user{
+/* #user{
   margin-top: 8px;
   font-size: 20px;
   margin-left: 77%;
+  display: flex;
+  justi
 
+} */
+
+
+#images{
+  margin-left: 1400px;
 }
 
 .btn-success{
-  width: 100px;
+  width: 130px;
   margin-top: 5px;
   margin-bottom: 5px;
 
 }
 #var{
-  margin-left: 1370px !important;
+  margin-left: 1180px !important;
 }
 
 
@@ -217,8 +239,8 @@ body{
 
 
 #contactTable{
-  width: 107% !important;
-  margin-left: -2.8%;
+  width: 92% !important;
+  margin-left: 4%;
  
 }
 
@@ -231,14 +253,23 @@ body{
      margin-left: 28%;
   }
   #var{
-    margin-left: 895px !important;
+    margin-left: 690px !important;
   }
-  #user{
+  /* #user{
     margin-left: 700px;
+  } */
+  .name{
+    margin-left: 920px;
   }
+  #images{
+    margin-left: 950px;
+  }
+  
    
  
 }
+
+
 
 
 @media only screen and (min-width:767px) and (max-width:1022px){
@@ -247,12 +278,18 @@ body{
     width: 75% !important;
   }
    #var{
-    margin-left: 87% !important;
+    margin-left: 59% !important;
   } 
  
   #user{
   margin-left: 485px;
  } 
+ #images{
+  margin-left: 690px;
+ }
+ .name{
+  margin-left: 190px;
+ }
 
   
 }
@@ -284,7 +321,13 @@ body{
     margin-left: 600px;
    }
    #var{
-     margin-left: 690px !important;
+     margin-left: 600px !important;
+   }
+   #images{
+    margin-left: 700px;
+   }
+   .name{
+    margin-left: 90px;
    }
   
  }
@@ -298,11 +341,17 @@ body{
 
 
   #var{
-    margin-left: 690px !important;
+    margin-left: 600px !important;
   }
   #user{
     margin-left: 600px;
   }
+  #images{
+    margin-left: 700px;
+   }
+   .name{
+    margin-left: 90px;
+   }
 }
 
 @media only screen and (min-width:319px) and (max-width:374px){
@@ -315,8 +364,15 @@ body{
     margin-left: 600px;
   }
   #var{
-    margin-left: 690px !important;
+    margin-left: 600px !important;
   }
+  #images{
+    margin-left: 700px;
+   }
+   .name{
+    margin-left: 90px;
+   }
+
 }
 
 

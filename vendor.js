@@ -32,6 +32,16 @@ async function fetchUser() {
         alert("There was an error fetch the user profile.");
     }
 }
+
+function logout() {
+    // Clear any necessary data (e.g., JWT token)
+    localStorage.removeItem("jwtToken"); // Adjust based on your storage
+
+    // Redirect to index.html
+    window.location.href = "index.html";
+}
+
+
 async function vendortable() {
     try {
         const jwtToken = localStorage.getItem('jwtToken');

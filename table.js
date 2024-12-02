@@ -2,10 +2,6 @@ function addData(){
     window.location = "table.html";
 }
 
-
-
-
-
 let countryIdGet = "";
 let parentId = "";
 let edit = false;
@@ -18,8 +14,8 @@ function getQueryParam() {
   }
  
 }
-
 getQueryParam();
+
 
 async function editUser(id) {
   edit = true;
@@ -38,6 +34,7 @@ async function editUser(id) {
   if (response.ok) {
     const user = await response.json();
     const data = user.data;
+      document.getElementById("save").textContent = "UPDATE";
     await fetchCurrencies();
     await countryGet();
     parentId = data.id;
@@ -64,23 +61,27 @@ async function editUser(id) {
     for (let i = 0; i < data.contactList.length -1; i++) {
       addRow();
     }
+
+
+
+
     for (let i = 0; i < data.contactList.length; i++) {
 
       j= i + 1
       document.getElementById("Name"+j).value = data.contactList[i].name;
       document.getElementById("email"+j).value = data.contactList[i].email;
-      document.getElementById("phoneno"+j).value =
-        data.contactList[i].mobileNo;
-      document.getElementById("isdefault"+j).value =
-        data.contactList[i].isDefault;
-        document.getElementById("rowId").value = data.contactList[i].id;
+      document.getElementById("phoneno"+j).value = data.contactList[i].mobileNo;
+      document.getElementById("isdefault"+j).value = data.contactList[i].isDefault;
+      document.getElementById("rowId").value = data.contactList[i].id;
     }
     console.log(document.getElementById("rowId").value)
 
-  } else {
+   } else {
     throw new Error("Failed to fetch user data");
   }
 }
+
+
 
 async function saveButton(event) {
   event.preventDefault();
@@ -100,6 +101,7 @@ async function saveButton(event) {
     let Name = document.getElementById('Name1').value;
     let email = document.getElementById('email1').value;
     let phoneno = document.getElementById('phoneno1').value;
+    let isdefault = document.getElementById('isdefault1').value;
 
     let bankaccount = document.getElementById('bankaccount').value;
     let bankaccountno = document.getElementById('bankaccountno').value;
@@ -123,6 +125,8 @@ async function saveButton(event) {
     let nameError = document.getElementById('nameError');
     let emailError = document.getElementById('emailError');
     let phonenoError = document.getElementById('phonenoError');
+    // let isdefaultError = document.getElementById('isdefaultError');
+
 
     let valid = true;
 
@@ -265,9 +269,7 @@ async function saveButton(event) {
       };
       console.log(rowId.value,'111')
       console.log(payload,'222')
-      const response = await fetch(
-        "https://hastin-container.com/staging/api/vendor/update",
-        {
+      const response = await fetch("https://hastin-container.com/staging/api/vendor/update", {
           method: "PUT",
           headers: {
             Authorization: `BslogiKey ${jwtToken}`,
@@ -281,6 +283,7 @@ async function saveButton(event) {
         const result = await response.json();
         console.log("Vendor Updated Successfully:", result);
         alert("Vendor Updated Successfully!");
+        
 
         //document.getElementById("formpage").reset();
       } else {
@@ -340,43 +343,7 @@ async function saveButton(event) {
   }
 
  
-//  //Contact
-  
-//   const payload = { 
-//         name: Name,
-//         email: email,
-//         mobileNo: phoneno,
-//         isDefault: true,
-//         id: null,
-//         vendorId: "d791a8b0-4043-4cf0-b706-7791ead5a61d",
-//         createdBy: "adf8906a-cf9a-490f-a233-4df16fc86c58"
 
-//     };
-
-//   try {
-//       const response = await fetch('https://hastin-container.com/staging/api/vendor/contact/create', {
-//           method: 'POST',
-//           headers: {
-//              'Content-Type': 'application/json'
-//              },
-//           body: JSON.stringify(payload)
-//       });
-
-//       if (response.ok) {
-//           const result = await response.json();
-//             console.log("Created Successfully:", result);
-
-//           // alert("User created successfully!");
-
-//       } else {
-//           throw new Error("create failed");
-//       }
-//   } catch (error) {
-//       console.error("Error:", error);
-//       alert("There was an error in the form.");
-  
-// }
- 
  
 
 
@@ -529,148 +496,6 @@ fetchCurrencies();
 
 
 
-// contact Page
-
-
-
-
-// document.addEventListener("DOMContentLoaded", () => {
-//     const addRowBtn = document.getElementById("addRowBtn");
-//     const contactTable = document.getElementById("contactTable").querySelector("tbody");
-
-//     addRowBtn.addEventListener("click", (e) => {
-//         e.preventDefault(); 
-//         const newRow = document.createElement("tr");
-//         const rowCount = contactTable.rows.length + 1;
-        
-//         newRow.innerHTML = `
-//             <td>${rowCount}</td>
-//             <td><input type="text" class="form-control border-2 rounded-0 border-start-0 border-end-0 border-top-0" style="box-shadow: none;" placeholder="Name"></td>
-//             <td><input type="email" class="form-control border-2 rounded-0 border-start-0 border-end-0 border-top-0" style="box-shadow: none;" placeholder="Email"></td>
-//             <td><input type="text" class="form-control border-2 rounded-0 border-start-0 border-end-0 border-top-0" style="box-shadow: none;" placeholder="Phone No"></td>
-//             <td>
-//                 <select class="form-control border-2 rounded-0 border-start-0 border-end-0 border-top-0" style="box-shadow: none;" placeholder="Default">
-//                      <option value="is default" disabled selected>is default</option>
-//                     <option value="Yes">Yes</option>
-//                     <option value="No">No</option>
-                 
-//                 </select>
-//             </td>
-//             <td>
-//             <button class="addRowBtn"><i class="fa-solid fa-check text-success"></i></button>
-//             <button class="removeRowBtn" ><i class="fa-solid fa-trash text-danger"></i></button>
-//             </td>
-//         `;
-
-//         contactTable.appendChild(newRow);
-
-//         const removeBtn = newRow.querySelector(".removeRowBtn");
-//         removeBtn.addEventListener("click", () => {
-//             newRow.remove();
-//         });
-        
-//     });
-
-//     contactTable.addEventListener("click", (e) => {
-//         if (e.target.classList.contains("removeRowBtn")) {
-//             e.target.closest("tr").remove();
-//         }
-//     });
-// });
-
-
-
-
-// document.addEventListener("DOMContentLoaded", () => {
-//   const addRowBtn = document.getElementById("addRowBtn");
-//   const contactTable = document.getElementById("contactTable").querySelector("tbody");
-
-//   addRowBtn.addEventListener("click", (e) => {
-//       e.preventDefault();
-//       const newRow = document.createElement("tr");
-//       const rowCount = contactTable.rows.length + 1;
-
-//       newRow.innerHTML = `
-//           <td>${rowCount}</td>
-//           <td><input type="text" class="form-control" placeholder="Name"></td>
-//           <td><input type="email" class="form-control" placeholder="Email"></td>
-//           <td><input type="text" class="form-control" placeholder="Phone No"></td>
-//           <td>
-//               <select class="form-control">
-//                   <option value="is default" disabled selected>Is Default</option>
-//                   <option value="Yes">Yes</option>
-//                   <option value="No">No</option>
-//               </select>
-//           </td>
-//           <td>
-//               <button class="postRowBtn"><i class="fa-solid fa-check text-success"></i></button>
-//               <button class="removeRowBtn"><i class="fa-solid fa-trash text-danger"></i></button>
-//           </td>
-//       `;
-
-//       contactTable.appendChild(newRow);
-
-//       // Remove button functionality
-//       newRow.querySelector(".removeRowBtn").addEventListener("click", () => {
-//           newRow.remove();
-//       });
-
-//       // Post button functionality
-//       newRow.querySelector(".postRowBtn").addEventListener("click", () => {
-//           postRowData(newRow);
-//       });
-//   });
-
-//   // Function to extract row data and POST to API
-//   const postRowData = (row) => {
-//       const name = row.querySelector("input[placeholder='Name']").value.trim();
-//       const email = row.querySelector("input[placeholder='Email']").value.trim();
-//       const phone = row.querySelector("input[placeholder='Phone No']").value.trim();
-//       const isDefault = row.querySelector("select").value;
-
-//       if (!name || !email || !phone || isDefault === "is default") {
-//           alert("Please fill all fields correctly before submitting.");
-//           return;
-//       }
-
-//       const postData = {
-//           name,
-//           email,
-//           phone,
-//           isDefault,
-//       };
-
-//       // POST to API
-
-//       const jwtToken = localStorage.getItem("jwtToken");
-
-
-//       fetch("  https://hastin-container.com/staging/api/vendor/contact/create", {
-//         method: 'POST',
-//         headers: {
-//           Authorization: `BslogiKey ${jwtToken}`,
-//            'Content-Type': 'application/json'
-//            },
-//         body: JSON.stringify(postData)
-//       })
-//           .then((response) => {
-//               if (response.ok) {
-//                   alert("Contact saved successfully!");
-//               } else {
-//                   throw new Error("Failed to save contact.");
-//               }
-//           })
-//           .catch((error) => {
-//               console.error(error);
-//               alert("An error occurred while saving contact.");
-//           });
-//   };
-// });
-
-
-
-
-
 
 function updateSerialNumbers() {
   const rows = document.querySelectorAll("#table2 tr");
@@ -697,29 +522,29 @@ function addRow() {
     <td>
       <div class="form-floating">
         <input type="text" class="form-control border-1 rounded-0 border-start-0 border-end-0 border-top-0" autocomplete="off" style="box-shadow: none;"" id="Name${i}" placeholder="Name" name="Name">
-        <label>Name</label>
-        <div id="nameError" class="text-danger"></div>
+        <label>Name${i}</label>
+        <div id="nameError${i}" class="text-danger"></div>
       </div>
     </td>
     <td>
       <div class="form-floating">
         <input type="text" class="form-control border-1 rounded-0 border-start-0 border-end-0 border-top-0" autocomplete="off" style="box-shadow: none;"" id="email${i}" placeholder="Email" name="Email">
         <label for="Email${i}">Email</label>
-        <div id="emailError" class="text-danger"></div>
+        <div id="emailError${i}" class="text-danger"></div>
       </div>
     </td>
     <td>
       <div class="form-floating">
         <input type="text" class="form-control border-1 rounded-0 border-start-0 border-end-0 border-top-0" autocomplete="off" style="box-shadow: none;" id="phoneno${i}" placeholder="Phone No" name="phoneNumber">
         <label for="phoneNumber${i}">Phone No</label>
-        <div id="phonenoError" class="text-danger"></div>
+        <div id="phonenoError${i}" class="text-danger"></div>
       </div>
     </td>
     <td>
       <select class="form-select border-1 rounded-0 border-start-0 border-end-0 border-top-0 border-bottom-0 mt-2"  style="box-shadow: none;" id="isdefault${i}" placeholder="default" name="default">
         <option value="" selected disabled>Is Default</option>
-        <option value="Yes">Yes</option>
-        <option value="No">No</option>
+        <option value="true">Yes</option>
+        <option value="false">No</option>
       </select>
     </td>
     <td>
@@ -741,8 +566,7 @@ function removeRow(event) {
     updateSerialNumbers();
   }
 }
-document.getElementById("addRowBtn").addEventListener("click", addRow);
-document.getElementById("table2").addEventListener("click", removeRow);
+
 
 async function checkButton(rowIndex) {
   const urlParams = new URLSearchParams(window.location.search);
@@ -795,5 +619,5 @@ document.addEventListener("DOMContentLoaded", () => {
   document.getElementById("table2").addEventListener("click", removeRow);
 });
 
-// document.getElementById("addRowButton").addEventListener("click", addRow);
-// document.getElementById("table2").addEventListener("click", removeRow);
+
+

@@ -32,6 +32,13 @@ async function fetchUser() {
         alert("There was an error fetch the user profile.");
     }
 }
+
+function logout() {
+    localStorage.removeItem("jwtToken"); 
+    window.location = "index.html";
+}
+
+
 async function vendortable() {
     try {
         const jwtToken = localStorage.getItem('jwtToken');
@@ -65,8 +72,8 @@ async function vendortable() {
             throw new Error("Failed to fetch user profile");
         }
     } catch (error) {
-        console.error("Error:", error);
-        alert("There was an error in user profile.");
+        // console.error("Error:", error);
+        // alert("There was an error in user profile.");
     }
 }
 
@@ -84,9 +91,9 @@ function displayTable(users) {
                 <td>${user.country}</td>
                 <td>${user.status}</td>
                 <td>
-             <button>
-             <i class='bx bxs-edit-alt fs-3  text-danger' data-id="${user.id}"></i>                   
-              </button>
+           
+             <i class='bx bxs-edit-alt fs-3  text-success' data-id="${user.id}"></i>                   
+              
                 </td>
             </tr>`;
         tableBody.innerHTML += row;

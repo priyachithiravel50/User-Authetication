@@ -34,11 +34,8 @@ async function fetchUser() {
 }
 
 function logout() {
-    // Clear any necessary data (e.g., JWT token)
-    localStorage.removeItem("jwtToken"); // Adjust based on your storage
-
-    // Redirect to index.html
-    window.location.href = "index.html";
+    localStorage.removeItem("jwtToken"); 
+    window.location = "index.html";
 }
 
 
@@ -75,8 +72,8 @@ async function vendortable() {
             throw new Error("Failed to fetch user profile");
         }
     } catch (error) {
-        console.error("Error:", error);
-        alert("There was an error in user profile.");
+        // console.error("Error:", error);
+        // alert("There was an error in user profile.");
     }
 }
 

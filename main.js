@@ -81,45 +81,30 @@ async function Click(event) {
   }
 }
 
-
-  // Toggle password visibility
-  function togglePassword() {
-    const passwordInput = document.getElementById('pswd');
-    const passwordIcon = document.getElementById('togglePassword');
-    
-    // Check current type and toggle it
-    if (passwordInput.type === 'password') {
-      passwordInput.type = 'text';
-      passwordIcon.classList.remove('fa-eye');
-      passwordIcon.classList.add('fa-eye-slash');
-    } else {
-      passwordInput.type = 'password';
-      passwordIcon.classList.remove('fa-eye-slash');
-      passwordIcon.classList.add('fa-eye');
-    }
-  
-  }
-
+// Close OTP Modal
+function closeOtpModal() {
+  document.getElementById('otpModal').style.display = 'none';
+  clearInterval(timerInterval);
+}
 
 // Open OTP Modal
 function openOtpModal() {
-
   const opaque = localStorage.getItem('opaque');
   const accessCode = localStorage.getItem('accessCode');
 
   document.getElementById('otpPrefix').textContent = opaque;
-  document.getElementById('otpInput').value = accessCode;
+  document.getElementById('otpInput').value = accessCode; 
   document.getElementById('otpModal').style.display = 'block';
 
   startTimer();
-  document.getElementById('resendOtp').onclick = function() {
+
+  
+  document.getElementById('resendOtp').onclick = function () {
       const payload = { opaque, accessCode };
       sendOtp(payload);
       startTimer();
   };
 }
-
-
 
 let timerInterval;
 function startTimer() {
@@ -132,26 +117,27 @@ function startTimer() {
       const minutes = Math.floor(timeRemaining / 60);
       const seconds = timeRemaining % 60;
 
-      document.getElementById('timer').textContent = 
+      document.getElementById('timer').textContent =
           `${minutes.toString().padStart(2, '0')}:${seconds.toString().padStart(2, '0')}`;
 
       if (timeRemaining <= 0) {
           clearInterval(timerInterval);
-          alert("OTP has expired.Resend OTP");
+          alert("OTP has expired. Please resend OTP.");
       }
   }, 1000);
 }
 
-// Close OTP Modal
-function closeOtpModal() {
-  document.getElementById('otpModal').style.display = 'none';
-  clearInterval(timerInterval);
-}
-
-
-
+// Validate and send OTP
 async function sendOtp(data) {
   try {
+      const enteredOtp = document.getElementById('otpInput').value;
+      const storedOtp = localStorage.getItem('accessCode');
+
+      if (enteredOtp !== storedOtp) {
+          alert("Invalid OTP. Please enter the correct OTP.");
+          return; 
+      }
+
       const jwtToken = localStorage.getItem('jwtToken');
       if (!jwtToken) {
           alert("Authorization token is missing.");
@@ -171,15 +157,11 @@ async function sendOtp(data) {
           const result = await response.json();
           console.log("OTP verified:", result);
           alert("OTP verified!");
-          window.location = "vendor.html"
-          document.getElementById('form').reset();
-        //   closeOtpModal();
-         // Display the success message
-        
+          window.location = "vendor.html"; 
+          document.getElementById('form').reset(); 
           clearInterval(timerInterval);
       } else {
-        //   alert("Invalid OTP. Please try again.");
-           throw new Error("Login failed");
+          throw new Error("Invalid OTP.");
       }
   } catch (error) {
       console.error("Error:", error);
@@ -187,3 +169,24 @@ async function sendOtp(data) {
   }
 }
 
+ 
+
+
+
+ // Toggle password visibility
+ function togglePassword() {
+  const passwordInput = document.getElementById('pswd');
+  const passwordIcon = document.getElementById('togglePassword');
+  
+  // Check current type and toggle it
+  if (passwordInput.type === 'password') {
+    passwordInput.type = 'text';
+    passwordIcon.classList.remove('fa-eye');
+    passwordIcon.classList.add('fa-eye-slash');
+  } else {
+    passwordInput.type = 'password';
+    passwordIcon.classList.remove('fa-eye-slash');
+    passwordIcon.classList.add('fa-eye');
+  }
+
+}

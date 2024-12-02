@@ -6,7 +6,7 @@ body{
 
   max-width: 400px;
   margin: auto;
-  margin-top: 12%;
+  margin-top: 8%;
   padding: 20px;
   background: white;
   border-radius: 4px;
@@ -18,14 +18,30 @@ body{
    color: #203864;
   margin-bottom: 20px;
   text-align: center;
-  margin-top: 20px; 
+  margin-top: 20px;
 }
 .form-floating label i {
   margin-right: 8px;
 }
+
+.container-fluid .form-floating input{
+  margin-left: 3%;
+}
+
+.form-floating select{
+  margin-left: 3%;
+}
+
 .span{
   margin-top: 16px;
 }
+#server{
+  margin-left: 120px;
+  font-size: 110px;
+  color: #203864;
+  }
+
+
 
 .eye-icon {
   position: absolute;
@@ -39,9 +55,9 @@ body{
 }
 
 .btn{
-  margin-left: 100px;
+  margin-left: 105px;
   width: 40%;
-  margin-top:12%;
+  margin-top: 10%;
 }
 .for{
   float: right;
@@ -133,6 +149,18 @@ body{
   margin-top: 10px;
 }
 
+.table-title{
+  margin-top: 70px;
+}
+
+#drop{
+  margin-left: 88%;
+  color: #203864;
+}
+
+.detail, h2{
+   margin-left: -10px;
+}
 
 
 
@@ -141,27 +169,46 @@ body{
   color: #203864;
   /* justify-content: space-between; */
   text-transform: capitalize;
+  margin-left: 1380px;
+}
+.detail{
+  display: flex;
+  
+  /* justify-content: space-between; */
 }
 
 /* .values{
   display: flex;
   color: #203864;
 } */
-#user{
+/* #user{
   margin-top: 8px;
   font-size: 20px;
   margin-left: 77%;
+  display: flex;
+  justi
 
+} */
+
+.fas, .fa-user{
+  color:  #203864;
+}
+#userName{
+  text-transform: capitalize;
+}
+
+#images{
+  margin-left: 1400px;
 }
 
 .btn-success{
-  width: 100px;
+  width: 130px;
   margin-top: 5px;
   margin-bottom: 5px;
 
 }
 #var{
-  margin-left: 1370px !important;
+  margin-left: 1120px !important;
 }
 
 
@@ -180,20 +227,30 @@ body{
 
 }
 
+
+
+
+
 #vendor{
-  width: 400px;
-  margin: 10vh auto;
+  border-radius: 10px;
+  width: 380px;
+  /* margin-left: 10px !important; */
+  margin: 5vh auto;
 }
 
 #vendor1{
-  width: 400px;
-  margin: 10vh auto;
+    border-radius: 10px;
+    width: 380px;
+    /* margin-left: -20px; */
+    margin: 5vh auto;
+}
+#vendor2{
+  border-radius: 10px;
+  width: 380px;
+  /* margin-left: -20px; */
+  margin: 5vh auto;
 }
 
-#vendor2{
-  width: 400px;
-  margin: 10vh auto;
-}
 
 
 .box1{
@@ -210,9 +267,12 @@ body{
 
 
 #contactTable{
-  width: 100%;
-  margin-left: 10px;
+  width: 92% !important;
+  margin-left: 4%;
+ 
 }
+
+
 
 
 
@@ -223,14 +283,25 @@ body{
      margin-left: 28%;
   }
   #var{
-    margin-left: 895px !important;
+    margin-left: 650px !important;
   }
-  #user{
+  /* #user{
     margin-left: 700px;
+  } */
+  .name{
+    margin-left: 920px;
+  }
+  #images{
+    margin-left: 950px;
+  }
+  #drop{
+    margin-left: 860px;
   }
    
  
 }
+
+
 
 
 @media only screen and (min-width:767px) and (max-width:1022px){
@@ -239,13 +310,21 @@ body{
     width: 75% !important;
   }
    #var{
-    margin-left: 87% !important;
+    margin-left: 59% !important;
   } 
  
   #user{
   margin-left: 485px;
  } 
-
+ #images{
+  margin-left: 690px;
+ }
+ .name{
+  margin-left: 190px;
+ }
+ #drop{
+  margin-left: 250px;
+ }
   
 }
 
@@ -276,7 +355,16 @@ body{
     margin-left: 600px;
    }
    #var{
-     margin-left: 690px !important;
+     margin-left: 600px !important;
+   }
+   #images{
+    margin-left: 700px;
+   }
+   .name{
+    margin-left: 90px;
+   }
+   #drop{
+    margin-left: 200px;
    }
   
  }
@@ -290,11 +378,20 @@ body{
 
 
   #var{
-    margin-left: 690px !important;
+    margin-left: 600px !important;
   }
   #user{
     margin-left: 600px;
   }
+  #images{
+    margin-left: 700px;
+   }
+   .name{
+    margin-left: 90px;
+   }
+   #drop{
+    margin-left: 100px;
+   }
 }
 
 @media only screen and (min-width:319px) and (max-width:374px){
@@ -307,8 +404,18 @@ body{
     margin-left: 600px;
   }
   #var{
-    margin-left: 690px !important;
+    margin-left: 600px !important;
   }
+  #images{
+    margin-left: 700px;
+   }
+   .name{
+    margin-left: 90px;
+   }
+   #drop{
+    margin-left: 100px;
+   }
+
 }
 
 

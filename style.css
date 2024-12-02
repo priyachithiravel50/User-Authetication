@@ -149,6 +149,18 @@ body{
   margin-top: 10px;
 }
 
+.table-title{
+  margin-top: 70px;
+}
+
+#drop{
+  margin-left: 88%;
+  color: #203864;
+}
+
+.detail, h2{
+   margin-left: -10px;
+}
 
 
 
@@ -178,6 +190,12 @@ body{
 
 } */
 
+.fas, .fa-user{
+  color:  #203864;
+}
+#userName{
+  text-transform: capitalize;
+}
 
 #images{
   margin-left: 1400px;
@@ -190,7 +208,7 @@ body{
 
 }
 #var{
-  margin-left: 1180px !important;
+  margin-left: 1120px !important;
 }
 
 
@@ -209,20 +227,30 @@ body{
 
 }
 
+
+
+
+
 #vendor{
-  width: 400px;
-  margin: 10vh auto;
+  border-radius: 10px;
+  width: 380px;
+  /* margin-left: 10px !important; */
+  margin: 5vh auto;
 }
 
 #vendor1{
-  width: 400px;
-  margin: 10vh auto;
+    border-radius: 10px;
+    width: 380px;
+    /* margin-left: -20px; */
+    margin: 5vh auto;
+}
+#vendor2{
+  border-radius: 10px;
+  width: 380px;
+  /* margin-left: -20px; */
+  margin: 5vh auto;
 }
 
-#vendor2{
-  width: 400px;
-  margin: 10vh auto;
-}
 
 
 .box1{
@@ -247,13 +275,15 @@ body{
 
 
 
+
+
 @media only screen and (min-width:1023px) and (max-width:1439px){
   .modal-content{
      width: 55% !important;
      margin-left: 28%;
   }
   #var{
-    margin-left: 690px !important;
+    margin-left: 650px !important;
   }
   /* #user{
     margin-left: 700px;
@@ -264,7 +294,9 @@ body{
   #images{
     margin-left: 950px;
   }
-  
+  #drop{
+    margin-left: 860px;
+  }
    
  
 }
@@ -290,7 +322,9 @@ body{
  .name{
   margin-left: 190px;
  }
-
+ #drop{
+  margin-left: 250px;
+ }
   
 }
 
@@ -329,6 +363,9 @@ body{
    .name{
     margin-left: 90px;
    }
+   #drop{
+    margin-left: 200px;
+   }
   
  }
 
@@ -352,6 +389,9 @@ body{
    .name{
     margin-left: 90px;
    }
+   #drop{
+    margin-left: 100px;
+   }
 }
 
 @media only screen and (min-width:319px) and (max-width:374px){
@@ -371,6 +411,9 @@ body{
    }
    .name{
     margin-left: 90px;
+   }
+   #drop{
+    margin-left: 100px;
    }
 
 }

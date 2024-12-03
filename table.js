@@ -125,7 +125,7 @@ async function saveButton(event) {
     let nameError = document.getElementById('nameError');
     let emailError = document.getElementById('emailError');
     let phonenoError = document.getElementById('phonenoError');
-    // let isdefaultError = document.getElementById('isdefaultError');
+    let isdefaultError = document.getElementById('defaultError');
 
 
     let valid = true;
@@ -229,7 +229,35 @@ async function saveButton(event) {
         if (phonenoError) phonenoError.textContent = '';
     }
 
-  if (valid) {
+    const contactList = [];
+    const rows = document.querySelectorAll('#table2 tr');
+  
+    let allRowsValid = true; // Track if all rows are valid
+  
+    rows.forEach(row => {
+      const Name = document.getElementById(`Name${i}`).value;
+      const email = document.getElementById(`email${i}`).value;
+      const phoneno = document.getElementById(`phoneno${i}`).value;
+      const isdefault = document.getElementById(`isdefault${i}`).value;
+  
+      // Validate the current row
+      const isRowValid = validateRow(i);
+      if (!isRowValid) {
+        allRowsValid = false;
+      }
+  
+      // Add to contactList only if row is valid
+      if (isRowValid) {
+        contactList.push({
+          name: Name,
+          email: email,
+          mobileNo: phoneno,
+          isDefault: isdefault,
+        });
+      }
+    });
+  
+    if (valid && allRowsValid) {
     const jwtToken = localStorage.getItem("jwtToken");
 
     // try
@@ -343,12 +371,53 @@ async function saveButton(event) {
   }
 
  
-
+return false;
  
-
-
 }
 
+function validateField(value, errorElementId) {
+  const errorElement = document.getElementById(errorElementId);
+  if (!errorElement) {
+    console.error(`Element with ID '${errorElementId}' not found.`);
+    return false;
+  }
+  if (value.trim() === "") {
+    errorElement.textContent = "Required*";
+    errorElement.style.color = "red";
+    errorElement.style.fontSize = "13px";
+    errorElement.style.paddingLeft = "15px";
+    return false;
+  } else {
+    errorElement.textContent = "";
+    return true;
+  }
+}
+
+
+function validateRow(i) {
+  let isValid = true;
+  const Name = document.getElementById(`Name${i}`).value;
+  const email = document.getElementById(`email${i}`).value;
+  const phoneno = document.getElementById(`phoneno${i}`).value;
+  const isdefault = document.getElementById(`isdefault${i}`).value;
+
+  isValid &= validateField(Name, `nameError${i}`);
+  isValid &= validateField(email, `emailError${i}`);
+  isValid &= validateField(phoneno, `phonenoError${i}`);
+  isValid &= validateField(isdefault, `defaultError${i}`);
+
+  return isValid;
+}
+
+function removeRow(i) {
+  const row = document.getElementById('tr' + i);
+  if (row) {
+    row.remove();
+    updateSerialNumbers(); 
+  }
+}
+
+// document.getElementById("addRowButton").addEventListener("click", addRow);
 
 
 
@@ -515,73 +584,75 @@ function addRow() {
   i++; 
 
   const tableBody = document.getElementById("table2");
-  const newRow = document.createElement("tr");
+  const newRow = document.createElement('tr');
+  newRow.id = 'tr' + i; // Assign unique ID to each row
 
   newRow.innerHTML = `
-      <td class="serialno"></td>
+    <td class="serialno">${i}</td>
     <td>
       <div class="form-floating">
-        <input type="text" class="form-control border-1 rounded-0 border-start-0 border-end-0 border-top-0" autocomplete="off" style="box-shadow: none;"" id="Name${i}" placeholder="Name" name="Name">
-        <label>Name${i}</label>
-        <div id="nameError${i}" class="text-danger"></div>
+        <input type="text" class="underInput form-control border-1 rounded-0 border-start-0 border-end-0 border-top-0" style="box-shadow: none;" id="Name${i}" placeholder="Name" name="Name">
+        <label for="name">Name</label>
+        <div id="nameError${i}"></div>
       </div>
     </td>
     <td>
       <div class="form-floating">
-        <input type="text" class="form-control border-1 rounded-0 border-start-0 border-end-0 border-top-0" autocomplete="off" style="box-shadow: none;"" id="email${i}" placeholder="Email" name="Email">
-        <label for="Email${i}">Email</label>
-        <div id="emailError${i}" class="text-danger"></div>
+        <input type="text" class="underInput form-control border-1 rounded-0 border-start-0 border-end-0 border-top-0" style="box-shadow: none;" id="email${i}" placeholder="Email" name="Email">
+        <label for="Email">Email</label>
+        <div id="emailError${i}"></div>
       </div>
     </td>
     <td>
       <div class="form-floating">
-        <input type="text" class="form-control border-1 rounded-0 border-start-0 border-end-0 border-top-0" autocomplete="off" style="box-shadow: none;" id="phoneno${i}" placeholder="Phone No" name="phoneNumber">
-        <label for="phoneNumber${i}">Phone No</label>
-        <div id="phonenoError${i}" class="text-danger"></div>
+        <input type="text" class="underInput form-control border-1 rounded-0 border-start-0 border-end-0 border-top-0" style="box-shadow: none;" id="phoneno${i}" placeholder="Phone No" name="PhoneNo">
+        <label for="PhoneNo">Phone No</label>
+        <div id="phonenoError${i}"></div>
       </div>
     </td>
     <td>
-      <select class="form-select border-1 rounded-0 border-start-0 border-end-0 border-top-0 border-bottom-0 mt-2"  style="box-shadow: none;" id="isdefault${i}" placeholder="default" name="default">
+      <select class="form-select border-1 rounded-0 border-start-0 border-end-0 border-top-0 border-bottom-0" id="isdefault${i}" placeholder="default" name="default">
         <option value="" selected disabled>Is Default</option>
         <option value="true">Yes</option>
         <option value="false">No</option>
       </select>
+      <div id="defaultError${i}"></div>
     </td>
     <td>
-    <div class="mt-2">
-      <i class='bx bx-check text-success fs-2' id="checkButton${i}" onclick="checkButton(${i})"></i>
-      <i class='bx bxs-trash text-danger fs-3 delete-row'></div></i>
+      <i id="checkButton" onClick="checkButton(${i})" class="bx bx-check text-success fs-3 ms-3 mt-2"></i>
+      <i class="bx bxs-trash text-danger fs-3 ms-3 mt-2 delete-row" onclick="removeRow(${i})"></i>
     </td>
-  
   `;
 
   tableBody.appendChild(newRow);
   updateSerialNumbers();
 }
 
-function removeRow(event) {
-  if (event.target.classList.contains("delete-row")) {
-    const row = event.target.closest("tr");
-    row.remove();
-    updateSerialNumbers();
-  }
+
+function updateSerialNumbers() {
+  const rows = document.querySelectorAll("#table2 tr");
+  rows.forEach((row, index) => {
+    row.querySelector(".serialno").textContent = index + 1;
+  });
 }
 
 
+
 async function checkButton(rowIndex) {
+  const isValid = validateRow(i);
   const urlParams = new URLSearchParams(window.location.search);
   const vendorId = urlParams.get("id");
 
   const Name = document.getElementById(`Name${rowIndex}`).value;
-  const Email = document.getElementById(`email${rowIndex}`).value;
-  const phoneNumber = document.getElementById(`phoneno${rowIndex}`).value;
-  const chooseDefault = document.getElementById(`isdefault${rowIndex}`).value;
+  const email = document.getElementById(`email${rowIndex}`).value;
+  const phoneno = document.getElementById(`phoneno${rowIndex}`).value;
+  const isdefault = document.getElementById(`isdefault${rowIndex}`).value;
 
   const payload = {
     name: Name,
-    email: Email,
-    mobileNo: phoneNumber,
-    isDefault: chooseDefault === "Yes",
+    email: email,
+    mobileNo: phoneno,
+    isDefault: isdefault === "Yes",
     id: null,
     vendorId: vendorId,
     createdBy: "111c9720-4abb-4beb-9303-34d0f2df67da",
